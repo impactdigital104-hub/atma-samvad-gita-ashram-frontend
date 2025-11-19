@@ -1,4 +1,3 @@
-alert("Decision Compass JS loaded");
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("decision-compass-form");
   if (!form) return;
