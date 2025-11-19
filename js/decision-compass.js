@@ -13,7 +13,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function showError(message) {
     if (!errorEl) return;
-    errorEl.textContent = message || "Something went wrong. Please try again.";
+    errorEl.textContent =
+      message || "Something went wrong. Please try again in a little while.";
     errorEl.style.display = "block";
   }
 
@@ -21,67 +22,45 @@ document.addEventListener("DOMContentLoaded", function () {
     if (errorEl) errorEl.style.display = "none";
   }
 
-  function renderDummyResponse(input) {
+  function renderDecisionCompass(content) {
     if (!resultEl) return;
+    resultEl.innerHTML = "";
+
+    if (!content) {
+      resultEl.innerHTML =
+        "<p>Sorry, no guidance was returned from the Gita just now.</p>";
+      return;
+    }
 
     const {
-      situation,
-      lifeArea,
-      emotion,
-      desiredOutcome,
-      constraints
-    } = input;
+      summary,
+      inputEcho = {},
+      gitaLens = [],
+      verses = [],
+      actionPlan = [],
+      innerPractice,
+      reflectionQuestions = []
+    } = content;
 
-    // This roughly mirrors the future API response shape
-    const dummyResponse = {
-      summary:
-        "The Gita invites you to act from dharma and clarity rather than fear or short-term gain.",
-      gitaLens: [
-        "See your situation as a field (kṣetra) for sincere effort, not as a battlefield of ego and anxiety.",
-        "Choose the path that honours your responsibilities while keeping your inner poise.",
-        "Offer the fruits of your decision to the Divine, and stay focused on right action."
-      ],
-      verses: [
-        {
-          ref: "BG 2.47",
-          excerpt:
-            "You have a right to perform your prescribed duty, but you are not entitled to the fruits of action...",
-          whyRelevant:
-            "This reminds you to choose and act wisely, without being paralysed by outcome anxiety."
-        },
-        {
-          ref: "BG 18.66",
-          excerpt:
-            "Abandon all varieties of dharmas and simply surrender unto Me...",
-          whyRelevant:
-            "This points you to trust in a higher wisdom when the mind feels torn between options."
-        }
-      ],
-      actionPlan: [
-        "Step 1 — Clarify: Write down, in one sentence, what you are truly seeking here (e.g., integrity, security, service).",
-        "Step 2 — Compare: For each option, note how well it serves that deeper aim and your key responsibilities.",
-        "Step 3 — Commit: Choose the option that best aligns with dharma and inner peace, then act wholeheartedly without constant second-guessing."
-      ],
-      innerPractice: {
-        title: "2-minute Gita pause",
-        duration: "2–3 minutes",
-        instructions:
-          "Sit quietly, slow down your breath, and mentally repeat a simple verse or mantra (e.g., 'Karmanye vadhikaraste'). Offer your confusion to the Divine and ask for the clarity to choose what is right, not just what is comfortable."
-      },
-      reflectionQuestions: [
-        "If I remove fear of loss for a moment, which option feels more dharmic and self-respecting?",
-        "How will this decision help me grow in steadiness, sincerity, and service over the next few years?"
-      ]
-    };
+    const {
+      situation = "",
+      lifeArea = "",
+      emotion = "",
+      desiredOutcome = "",
+      constraints = ""
+    } = inputEcho;
 
-    // Build HTML output
     const htmlParts = [];
 
-    htmlParts.push(`<div class="dc-section">
-      <h4>1. Summary</h4>
-      <p>${dummyResponse.summary}</p>
-    </div>`);
+    // 1. Summary
+    if (summary) {
+      htmlParts.push(`<div class="dc-section">
+        <h4>1. Summary</h4>
+        <p>${summary}</p>
+      </div>`);
+    }
 
+    // 2. Your Situation (as heard)
     if (situation) {
       htmlParts.push(`<div class="dc-section dc-section-muted">
         <h4>Your Situation (as heard)</h4>
@@ -89,6 +68,7 @@ document.addEventListener("DOMContentLoaded", function () {
       </div>`);
     }
 
+    // 3. Context Snapshot
     if (lifeArea || emotion || desiredOutcome || constraints) {
       htmlParts.push(`<div class="dc-section dc-section-meta">
         <h4>Context Snapshot</h4>
@@ -109,28 +89,36 @@ document.addEventListener("DOMContentLoaded", function () {
       </div>`);
     }
 
-    if (dummyResponse.gitaLens && dummyResponse.gitaLens.length) {
+    // 4. Gita Lens
+    if (Array.isArray(gitaLens) && gitaLens.length) {
       htmlParts.push(`<div class="dc-section">
         <h4>2. Gita Lens on Your Dilemma</h4>
         <ul>
-          ${dummyResponse.gitaLens
-            .map((line) => `<li>${line}</li>`)
-            .join("")}
+          ${gitaLens.map((line) => `<li>${line}</li>`).join("")}
         </ul>
       </div>`);
     }
 
-    if (dummyResponse.verses && dummyResponse.verses.length) {
+    // 5. Verses
+    if (Array.isArray(verses) && verses.length) {
       htmlParts.push(`<div class="dc-section">
         <h4>3. Supporting Verses</h4>
         <ul class="dc-verses">
-          ${dummyResponse.verses
+          ${verses
             .map(
               (v) => `
             <li>
-              <p><strong>${v.ref}</strong></p>
-              <p class="dc-verse-excerpt">${v.excerpt}</p>
-              <p class="dc-verse-note"><em>${v.whyRelevant}</em></p>
+              <p><strong>${v.ref || ""}</strong></p>
+              ${
+                v.excerpt
+                  ? `<p class="dc-verse-excerpt">${v.excerpt}</p>`
+                  : ""
+              }
+              ${
+                v.whyRelevant
+                  ? `<p class="dc-verse-note"><em>${v.whyRelevant}</em></p>`
+                  : ""
+              }
             </li>
           `
             )
@@ -139,42 +127,39 @@ document.addEventListener("DOMContentLoaded", function () {
       </div>`);
     }
 
-    if (dummyResponse.actionPlan && dummyResponse.actionPlan.length) {
+    // 6. Action Plan
+    if (Array.isArray(actionPlan) && actionPlan.length) {
       htmlParts.push(`<div class="dc-section">
         <h4>4. Suggested 3-Step Action Plan</h4>
         <ol>
-          ${dummyResponse.actionPlan
-            .map((step) => `<li>${step}</li>`)
-            .join("")}
+          ${actionPlan.map((step) => `<li>${step}</li>`).join("")}
         </ol>
       </div>`);
     }
 
-    if (dummyResponse.innerPractice) {
+    // 7. Inner Practice
+    if (innerPractice) {
       htmlParts.push(`<div class="dc-section">
         <h4>5. Inner Practice</h4>
-        <p><strong>${dummyResponse.innerPractice.title}</strong> (${dummyResponse.innerPractice.duration})</p>
-        <p>${dummyResponse.innerPractice.instructions}</p>
+        <p><strong>${innerPractice.title || "Inner Practice"}</strong>${
+        innerPractice.duration ? ` (${innerPractice.duration})` : ""
+      }</p>
+        <p>${innerPractice.instructions || ""}</p>
       </div>`);
     }
 
-    if (
-      dummyResponse.reflectionQuestions &&
-      dummyResponse.reflectionQuestions.length
-    ) {
+    // 8. Reflection Questions
+    if (Array.isArray(reflectionQuestions) && reflectionQuestions.length) {
       htmlParts.push(`<div class="dc-section">
         <h4>6. Reflection Questions</h4>
         <ul>
-          ${dummyResponse.reflectionQuestions
-            .map((q) => `<li>${q}</li>`)
-            .join("")}
+          ${reflectionQuestions.map((q) => `<li>${q}</li>`).join("")}
         </ul>
       </div>`);
     }
 
     resultEl.innerHTML = htmlParts.join("");
 
-    // Hide placeholder once we have a result
     if (placeholderEl) {
       placeholderEl.style.display = "none";
     }
@@ -183,7 +168,6 @@ document.addEventListener("DOMContentLoaded", function () {
   form.addEventListener("submit", function (event) {
     event.preventDefault();
     clearError();
-    showLoading(false);
 
     const situation = document.getElementById("situation")?.value || "";
     const lifeArea = document.getElementById("lifeArea")?.value || "";
@@ -198,19 +182,53 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    // For Milestone 1: no API call yet, just dummy response
-    showLoading(true);
-
-    // Simulate a short delay so the loading message is visible
-    setTimeout(function () {
-      showLoading(false);
-      renderDummyResponse({
+    // Build request body for /api/chat-gita
+    const requestBody = {
+      feature: "decision_compass",
+      language: "en",
+      depth: "standard",
+      payload: {
+        title: "", // we are not collecting a separate title yet
         situation,
         lifeArea,
         emotion,
+        timeHorizon: "", // optional, can be wired later
         desiredOutcome,
         constraints
+      },
+      client: {
+        app: "gita-ashram",
+        version: "v1"
+      }
+    };
+
+    showLoading(true);
+
+    fetch("https://samvad.atmavani.life/api/chat-gita", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(requestBody)
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        showLoading(false);
+
+        if (!data || !data.success) {
+          showError("Unable to fetch guidance from the Gita just now.");
+          return;
+        }
+
+        renderDecisionCompass(data.content);
+      })
+      .catch((err) => {
+        console.error("Error calling /api/chat-gita:", err);
+        showLoading(false);
+        showError("There was a problem connecting to the Gita Ashram server.");
       });
-    }, 400);
   });
 });
