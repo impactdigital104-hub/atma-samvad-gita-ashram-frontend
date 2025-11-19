@@ -36,113 +36,131 @@
         </div>
       </section>
 
-     <!-- Form + Results Layout -->
-<section class="section section-split">
-  <div class="section-inner split-layout">
-    <!-- Left: Input Form -->
-    <div class="card form-card">
-      <h3>Your Dilemma</h3>
-      <p class="section-subtext">
-        Describe your situation honestly. The more concrete you are, the more helpful the Compass can be.
-      </p>
+      <!-- Form + Results Layout -->
+      <section class="section section-split">
+        <div class="section-inner split-layout">
+          <!-- Left: Input Form -->
+          <div class="card form-card">
+            <h3>Your Dilemma</h3>
+            <p class="section-subtext">
+              Describe your situation honestly. The more concrete you are, the more helpful the Compass can be.
+            </p>
 
-      <form id="decision-compass-form">
-        <!-- Situation (required) -->
-        <div class="form-group">
-          <label for="situation">Describe your situation or dilemma *</label>
-          <textarea
-            id="situation"
-            name="situation"
-            rows="5"
-            placeholder="Example: I have two job offers. One pays more but feels misaligned with my values..."
-            required
-          ></textarea>
+            <form id="decision-compass-form">
+              <!-- Situation (required) -->
+              <div class="form-group">
+                <label for="situation">Describe your situation or dilemma *</label>
+                <textarea
+                  id="situation"
+                  name="situation"
+                  rows="5"
+                  placeholder="Example: I have two job offers. One pays more but feels misaligned with my values..."
+                  required
+                ></textarea>
+              </div>
+
+              <!-- Life Area -->
+              <div class="form-group">
+                <label for="lifeArea">Which area of life does this relate to?</label>
+                <select id="lifeArea" name="lifeArea">
+                  <option value="">Select (optional)</option>
+                  <option value="career">Career / Work</option>
+                  <option value="relationships">Relationships / Family</option>
+                  <option value="health">Health / Well-being</option>
+                  <option value="finances">Money / Finances</option>
+                  <option value="spiritual">Spiritual Life</option>
+                  <option value="other">Other / Mixed</option>
+                </select>
+              </div>
+
+              <!-- Emotion -->
+              <div class="form-group">
+                <label for="emotion">What are you mainly feeling?</label>
+                <select id="emotion" name="emotion">
+                  <option value="">Select (optional)</option>
+                  <option value="anxious">Anxious / Restless</option>
+                  <option value="confused">Confused / Torn</option>
+                  <option value="guilty">Guilty</option>
+                  <option value="afraid">Afraid / Worried</option>
+                  <option value="angry">Angry / Resentful</option>
+                  <option value="sad">Sad / Disappointed</option>
+                </select>
+              </div>
+
+              <!-- Desired Outcome -->
+              <div class="form-group">
+                <label for="desiredOutcome">What outcome are you hoping for?</label>
+                <input
+                  type="text"
+                  id="desiredOutcome"
+                  name="desiredOutcome"
+                  placeholder="Example: Clarity on which job aligns better with my dharma."
+                />
+              </div>
+
+              <!-- Constraints -->
+              <div class="form-group">
+                <label for="constraints">Constraints or responsibilities (optional)</label>
+                <textarea
+                  id="constraints"
+                  name="constraints"
+                  rows="3"
+                  placeholder="Example: I support my parents financially, I have EMIs, children in school, etc."
+                ></textarea>
+              </div>
+
+              <!-- Submit -->
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">
+                  Ask the Gita (Decision Compass)
+                </button>
+              </div>
+
+              <!-- Helper Note -->
+              <p class="helper-note">
+                Note: This is an AI-assisted reflection based on the Bhagavad Gita.
+                It does not replace professional, legal, medical, or financial advice.
+              </p>
+            </form>
+          </div>
+
+          <!-- Right: Result Area -->
+          <div class="card results-card">
+            <h3>Gita Reflection</h3>
+            <p class="section-subtext" id="results-placeholder">
+              Your Gita-based reflection will appear here once you submit your dilemma.
+            </p>
+
+            <!-- Loading / Error States -->
+            <div id="dc-loading" class="status-message" style="display: none;">
+              Preparing a Gita reflection for your situation…
+            </div>
+            <div id="dc-error" class="status-message error" style="display: none;">
+              Something went wrong. Please check your input and try again.
+            </div>
+
+            <!-- Final Rendered Result -->
+            <div id="dc-result" class="dc-result">
+              <!-- JS will inject the dummy structured response here -->
+            </div>
+          </div>
         </div>
+      </section>
+    </main>
 
-        <!-- Life Area -->
-        <div class="form-group">
-          <label for="lifeArea">Which area of life does this relate to?</label>
-          <select id="lifeArea" name="lifeArea">
-            <option value="">Select (optional)</option>
-            <option value="career">Career / Work</option>
-            <option value="relationships">Relationships / Family</option>
-            <option value="health">Health / Well-being</option>
-            <option value="finances">Money / Finances</option>
-            <option value="spiritual">Spiritual Life</option>
-            <option value="other">Other / Mixed</option>
-          </select>
-        </div>
-
-        <!-- Emotion -->
-        <div class="form-group">
-          <label for="emotion">What are you mainly feeling?</label>
-          <select id="emotion" name="emotion">
-            <option value="">Select (optional)</option>
-            <option value="anxious">Anxious / Restless</option>
-            <option value="confused">Confused / Torn</option>
-            <option value="guilty">Guilty</option>
-            <option value="afraid">Afraid / Worried</option>
-            <option value="angry">Angry / Resentful</option>
-            <option value="sad">Sad / Disappointed</option>
-          </select>
-        </div>
-
-        <!-- Desired Outcome -->
-        <div class="form-group">
-          <label for="desiredOutcome">What outcome are you hoping for?</label>
-          <input
-            type="text"
-            id="desiredOutcome"
-            name="desiredOutcome"
-            placeholder="Example: Clarity on which job aligns better with my dharma."
-          />
-        </div>
-
-        <!-- Constraints -->
-        <div class="form-group">
-          <label for="constraints">Constraints or responsibilities (optional)</label>
-          <textarea
-            id="constraints"
-            name="constraints"
-            rows="3"
-            placeholder="Example: I support my parents financially, I have EMIs, children in school, etc."
-          ></textarea>
-        </div>
-
-        <!-- Submit -->
-        <div class="form-actions">
-          <button type="submit" class="btn btn-primary">
-            Ask the Gita (Decision Compass)
-          </button>
-        </div>
-
-        <!-- Helper Note -->
-        <p class="helper-note">
-          Note: This is an AI-assisted reflection based on the Bhagavad Gita.
-          It does not replace professional, legal, medical, or financial advice.
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="site-footer-inner">
+        <p>&copy; Atma Vani · Atma Samvad — Gita Ashram</p>
+        <p class="footer-note">
+          This is an experimental feature. Always use your own discernment and,
+          when needed, seek wise human counsel alongside the Gita.
         </p>
-      </form>
-    </div>
-
-    <!-- Right: Result Area -->
-    <div class="card results-card">
-      <h3>Gita Reflection</h3>
-      <p class="section-subtext" id="results-placeholder">
-        Your Gita-based reflection will appear here once you submit your dilemma.
-      </p>
-
-      <!-- Loading / Error States -->
-      <div id="dc-loading" class="status-message" style="display: none;">
-        Preparing a Gita reflection for your situation…
       </div>
-      <div id="dc-error" class="status-message error" style="display: none;">
-        Something went wrong. Please check your input and try again.
-      </div>
-
-      <!-- Final Rendered Result -->
-      <div id="dc-result" class="dc-result">
-        <!-- JS will inject the dummy structured response here -->
-      </div>
-    </div>
+    </footer>
   </div>
-</section>
+
+  <!-- Page Script -->
+  <script src="js/decision-compass.js" defer></script>
+</body>
+</html>
