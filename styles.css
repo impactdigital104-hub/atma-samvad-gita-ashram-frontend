@@ -1,0 +1,76 @@
+/* Basic layout */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  background: #fff9f0; /* Same Atma Vani soft background */
+  color: #333;
+}
+
+/* Header */
+header {
+  background: #ffcc80; /* Atma Vani orange tone */
+  padding: 1.5rem;
+  text-align: center;
+  border-bottom: 2px solid #f6a65c;
+}
+
+header .av-logo-area h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+header .av-logo-area p {
+  margin: 0.4rem 0 0;
+  font-size: 1rem;
+}
+
+/* Main sections */
+main {
+  padding: 1.5rem;
+}
+
+section {
+  margin-bottom: 2.5rem;
+}
+
+h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  color: #bf360c;
+}
+
+/* Feature cards grid */
+.feature-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.feature-card {
+  background: white;
+  padding: 1rem;
+  border-radius: 12px;
+  border: 1px solid #f0c38e;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.feature-card h3 {
+  margin-top: 0;
+  color: #d84315;
+}
+
+/* Button */
+button {
+  background: #ff9800;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
+  font-size: 1rem;
+}
+
+button:hover {
+  background:
