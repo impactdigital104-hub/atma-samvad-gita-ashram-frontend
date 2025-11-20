@@ -99,33 +99,66 @@ document.addEventListener("DOMContentLoaded", function () {
       </div>`);
     }
 
-    // 5. Verses
+     // 5. Verses (now with Sanskrit + transliteration + translations)
     if (Array.isArray(verses) && verses.length) {
       htmlParts.push(`<div class="dc-section">
         <h4>3. Supporting Verses</h4>
         <ul class="dc-verses">
           ${verses
-            .map(
-              (v) => `
-            <li>
-              <p><strong>${v.ref || ""}</strong></p>
-              ${
-                v.excerpt
-                  ? `<p class="dc-verse-excerpt">${v.excerpt}</p>`
-                  : ""
-              }
-              ${
-                v.whyRelevant
-                  ? `<p class="dc-verse-note"><em>${v.whyRelevant}</em></p>`
-                  : ""
-              }
-            </li>
-          `
-            )
+            .map((v) => {
+              const ref = v.ref || "";
+              const excerpt = v.excerpt || "";
+              const whyRelevant = v.whyRelevant || "";
+
+              // New fields from backend (may be empty)
+              const dev = (v.devanagari || "").replace(/\n/g, "<br>");
+              const translit = (v.transliteration || "").replace(/\n/g, "<br>");
+              const enTrans = v.enTranslation || "";
+              const hiTrans = v.hiTranslation || "";
+
+              return `
+                <li>
+                  ${ref ? `<p><strong>${ref}</strong></p>` : ""}
+
+                  ${dev ? `<p class="dc-verse-devanagari">${dev}</p>` : ""}
+
+                  ${
+                    translit
+                      ? `<p class="dc-verse-translit"><em>${translit}</em></p>`
+                      : ""
+                  }
+
+                  ${
+                    enTrans
+                      ? `<p class="dc-verse-en">${enTrans}</p>`
+                      : ""
+                  }
+
+                  ${
+                    hiTrans
+                      ? `<p class="dc-verse-hi">${hiTrans}</p>`
+                      : ""
+                  }
+
+                  ${
+                    excerpt
+                      ? `<p class="dc-verse-excerpt">${excerpt}</p>`
+                      : ""
+                  }
+
+                  ${
+                    whyRelevant
+                      ? `<p class="dc-verse-note"><em>${whyRelevant}</em></p>`
+                      : ""
+                  }
+                </li>
+              `;
+            })
             .join("")}
         </ul>
       </div>`);
     }
+
 
     // 6. Action Plan
     if (Array.isArray(actionPlan) && actionPlan.length) {
