@@ -74,3 +74,24 @@ button {
 
 button:hover {
   background:
+/* Gita Decision Compass verse styling */
+.dc-verse-devanagari {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0.25rem 0;
+}
+
+.dc-verse-translit {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0.25rem 0;
+}
+
+.dc-verse-en {
+  margin: 0.25rem 0;
+}
+
+.dc-verse-hi {
+  margin: 0.25rem 0;
+  font-size: 0.9rem;
+}
