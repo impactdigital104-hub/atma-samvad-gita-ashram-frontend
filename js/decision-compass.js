@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
       </div>`);
     }
 
-     // 5. Verses (now with Sanskrit + transliteration + translations)
+        // 5. Verses (now with Sanskrit + transliteration + translations)
     if (Array.isArray(verses) && verses.length) {
       htmlParts.push(`<div class="dc-section">
         <h4>3. Supporting Verses</h4>
@@ -151,6 +151,14 @@ document.addEventListener("DOMContentLoaded", function () {
                       ? `<p class="dc-verse-note"><em>${whyRelevant}</em></p>`
                       : ""
                   }
+
+                  <button 
+                    type="button"
+                    class="dc-more-explanation-btn"
+                    data-verse-ref="${ref}"
+                  >
+                    Ask for a deeper explanation of this verse
+                  </button>
                 </li>
               `;
             })
@@ -190,12 +198,34 @@ document.addEventListener("DOMContentLoaded", function () {
         </ul>
       </div>`);
     }
-
     resultEl.innerHTML = htmlParts.join("");
 
     if (placeholderEl) {
       placeholderEl.style.display = "none";
     }
+
+    // Attach click handlers for "More explanation" buttons
+    const moreButtons = resultEl.querySelectorAll(".dc-more-explanation-btn");
+    moreButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const verseRef = btn.getAttribute("data-verse-ref") || "";
+        const situationText =
+          situation ||
+          document.getElementById("situation")?.value ||
+          "";
+
+        const question = `Please explain ${verseRef || "this verse from the Bhagavad Gita"} in detail in the context of this situation: "${situationText}". Focus on how its teaching can guide me practically in real life.`;
+
+        try {
+          localStorage.setItem("gita_qna_prefill", question);
+        } catch (e) {
+          console.warn("Could not store prefill in localStorage", e);
+        }
+
+        // Redirect to the main Gita Q&A page (adjust if your Q&A is at a different path)
+        window.location.href = "/";
+      });
+    });
   }
 
   form.addEventListener("submit", function (event) {
