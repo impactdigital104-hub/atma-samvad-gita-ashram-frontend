@@ -220,162 +220,143 @@ padding-bottom: 180px !important;   /* ← reliable on Android */
   <!-- We will link styles.css later -->
 </head>
 <body>
-    <div class="av-page">
-    <!-- LEFT SIDEBAR -->
-    <aside class="av-sidebar">
-      <div class="av-sidebar-inner">
-        <div class="av-sidebar-logo">
-          <div class="av-logo-mark">ॐ</div>
-          <div class="av-logo-text">
-            <div class="av-logo-title">Atma Vani</div>
-            <div class="av-logo-subtitle">Gita Ashram</div>
-          </div>
-        </div>
+  <div class="app">
+    <!-- HAMBURGER BUTTON (for mobile) -->
+    <button id="menuBtn" class="hamburger" aria-label="Open menu" aria-expanded="false">☰</button>
 
-        <nav class="av-nav">
-          <div class="av-nav-group">
-            <div class="av-nav-heading">Main</div>
-            <a href="https://atmavani.life" class="av-nav-link" target="_blank" rel="noopener">
-              ← Back to AtmaVani.life
-            </a>
-          </div>
-
-          <div class="av-nav-group">
-            <div class="av-nav-heading">Gita Ashram</div>
-            <a href="/" class="av-nav-link av-nav-link-active">
-              Ask the Gita
-            </a>
-            <a href="/gita/decision-compass.html" class="av-nav-link">
-              Gita Decision Compass
-            </a>
-            <!-- Future links:
-            <a href="#" class="av-nav-link">Shloka-to-Life</a>
-            <a href="#" class="av-nav-link">Gita Mind Coach</a>
-            -->
-          </div>
-
-          <div class="av-nav-group">
-            <div class="av-nav-heading">More from Atma Vani</div>
-            <a href="https://atmavani.life/atma-marg" class="av-nav-link" target="_blank" rel="noopener">
-              Atma Marg — Your Path
-            </a>
-            <a href="https://atmavani.life/atma-sadhana" class="av-nav-link" target="_blank" rel="noopener">
-              Atma Sadhana — Daily Practice
-            </a>
-            <a href="https://atmavani.life/atma-samvad-pricing" class="av-nav-link" target="_blank" rel="noopener">
-              Atma Samvad Pricing
-            </a>
-          </div>
-        </nav>
+    <!-- SIDEBAR (copied from home.html, with small tweaks to links) -->
+    <nav class="sidebar" id="sidebar">
+      <div class="brand">
+        <img alt="Atma Vani logo" src="https://atmavani.life/wp-content/uploads/2025/07/atma-vani-logo.jpg" />
       </div>
-    </aside>
 
-    <!-- MAIN CONTENT AREA -->
-    <div class="av-main">
-
-  <!-- Header -->
-  <header>
-    <div class="av-shell">
-      <div class="av-logo-area">
-        <h1>Atma Samvad — Gita Ashram</h1>
-        <p>The Bhagavad Gita as your living guide inside Atma Vani.</p>
+      <div class="section">Quick actions</div>
+      <div class="menu">
+        <a class="item" href="https://atmavani.life/#new-chat" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+          <span>New Chat (Main)</span>
+          <span class="info">i</span>
+          <span class="tip">Open a fresh chat on AtmaVani.life.</span>
+        </a>
+        <a class="item" href="https://atmavani.life/#search-chats" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><circle cx="10" cy="10" r="4"/><path d="M15 15l4 4"/></svg>
+          <span>Search Chats (Main)</span>
+          <span class="info">i</span>
+          <span class="tip">Search within your Atma Vani conversations.</span>
+        </a>
       </div>
+
+      <div class="section">Services</div>
+
+      <div class="subhead">I. The Guru’s Role</div>
+      <div class="subgroup">
+        <a class="item" href="https://atmavani.life/atma-marg" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M7.5 20.5c-1.3 0-2.1-1-1.9-2 .2-.9 1.2-1.6 2.3-1.4 1.1.2 1.8 1.3 1.6 2.2-.1.7-.9 1.2-2 1.2zM15.3 18c-1.4 0-2.3-1.1-2-2.3.2-.9 1.4-1.6 2.6-1.4s1.9 1.2 1.7 2.1c-.2.9-1 1.6-2.3 1.6zM4 8c3-3 8-3 12 2"/></svg>
+          <span>Atma Marg</span>
+          <span class="info">i</span>
+          <span class="tip">Custom spiritual path and chosen deity guidance.</span>
+        </a>
+        <a class="item" href="https://atmavani.life/atma-sadhana" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M12 5c1.6 1.6 2.2 3.2 2.2 4.4-1-1-2.2-1-2.2-1s-1.2 0-2.2 1C9.8 8.2 10.4 6.6 12 5z"/><path d="M12 20c5 0 8-3 8-3-3 0-5-2-5-4 0 0-1 2-3 2s-3-2-3-2c0 2-2 4-5 4 0 0 3 3 8 3z"/></svg>
+          <span>Atma Sadhana</span>
+          <span class="info">i</span>
+          <span class="tip">Personalized daily spiritual practice.</span>
+        </a>
+        <a class="item" href="https://samvad.atmavani.life/#hub" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M3 6h11v7H8l-3 3z"/><path d="M10 9h11v7h-4l-3 3"/></svg>
+          <span>Atma Samvad</span>
+          <span class="info">i</span>
+          <span class="tip">One-on-one personal guidance.</span>
+        </a>
+      </div>
+
+      <div class="subhead">Gita Ashram</div>
+      <div class="subgroup">
+        <a class="item" href="/" style="background:#fffaf1;border:1px solid rgba(0,0,0,0.08);">
+          <svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="M4 10h16"/></svg>
+          <span>Ask the Gita</span>
+        </a>
+        <a class="item" href="/gita/decision-compass.html">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.5 7.5L23 11l-5.5 4.5L19 22l-7-3.5L5 22l1.5-6.5L1 11l7.5-1.5z"/></svg>
+          <span>Gita Decision Compass</span>
+        </a>
+      </div>
+
+      <div class="subhead">Account</div>
+      <div class="subgroup">
+        <!-- We will wire these later in Phase 3B -->
+        <a class="item" href="https://atmavani.life/#signup" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>
+          <span>Sign Up / Sign In</span>
+        </a>
+        <a class="item" href="https://atmavani.life/atma-samvad-pricing" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="10" rx="1.2"/><path d="M3 11h18M7 15h4"/></svg>
+          <span>Pricing</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- MAIN AREA FOR GITA ASHRAM CONTENT -->
+    <div class="main">
+      <!-- ↓↓↓ PASTE YOUR ORIGINAL GITA CONTENT HERE ↓↓↓ -->
+      GITA_CONTENT_GOES_HERE
+      <!-- ↑↑↑ PASTE IT IN PLACE OF THIS LINE ↑↑↑ -->
     </div>
-  </header>
+  </div>
 
-  <!-- Main content -->
-  <main>
-    <!-- Intro / Overview -->
-    <section id="gita-ashram-overview">
-      <h2>Welcome to the Gita Ashram</h2>
-      <p>
-        This is your dedicated space to bring real-life questions, emotions,
-        and dilemmas to the Bhagavad Gita — and receive gentle, practical,
-        scripture-rooted guidance.
-      </p>
-    </section>
+  <!-- POLICIES + LIABILITY copied from home.html -->
+  <div class="policies">
+    <div class="inner" aria-label="Legal and support links">
+      <a href="https://atmavani.life/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a>
+      <span class="sep">•</span>
+      <a href="https://atmavani.life/terms/" target="_blank" rel="noopener">Terms of Use</a>
+      <span class="sep">•</span>
+      <a href="https://atmavani.life/refunds/" target="_blank" rel="noopener">Refund &amp; Cancellation</a>
+      <span class="sep">•</span>
+      <a href="https://atmavani.life/cookies/" target="_blank" rel="noopener">Cookies Policy</a>
+      <span class="sep">•</span>
+      <a href="https://atmavani.life/data-usage/" target="_blank" rel="noopener">Data Usage Policy</a>
+      <span class="sep">•</span>
+      <a href="https://atmavani.life/contact/" target="_blank" rel="noopener">Contact</a>
+    </div>
+  </div>
 
-    <!-- Three core experiences -->
-    <section id="gita-ashram-features">
-      <h2>Three ways to walk with the Gita</h2>
-      <div class="feature-grid">
-        <article class="feature-card">
-          <h3>Gita Decision Compass</h3>
-          <p>
-            Describe a real-life dilemma and receive a Gita-based perspective,
-            supporting verses, and a simple 3-step action plan.
-          </p>
-        </article>
+  <div class="liability">
+    <div class="inner">
+      Namaste. As Atma Vani, this Gita Ashram experience provides AI-driven responses which are informational only and not a substitute for a qualified spiritual teacher or professional advice.
+    </div>
+  </div>
 
-        <article class="feature-card">
-          <h3>Shloka-to-Life Transformer</h3>
-          <p>
-            Pick any verse and see how it speaks to your work, relationships,
-            and inner emotional life — with micro-practices to try today.
-          </p>
-        </article>
+  <!-- Your existing Gita JS (e.g. app.js) -->
+  <script src="app.js"></script>
 
-        <article class="feature-card">
-          <h3>Gita Mind Coach</h3>
-          <p>
-            Work with specific emotions like fear, anger, or confusion using
-            Gita-informed perspectives and short guided resets.
-          </p>
-        </article>
-      </div>
-    </section>
+  <!-- Hamburger toggle logic (copied from home.html, trimmed) -->
+  <script>
+    (function () {
+      const menuBtn = document.getElementById('menuBtn');
+      const sidebar = document.getElementById('sidebar');
+      if (!menuBtn || !sidebar) return;
 
-    <!-- Simple Gita Q&A (dummy for now) -->
-    <section id="gita-qa">
-      <h2>Ask the Gita (Preview)</h2>
-      <p>
-        Type a question or situation below. For now, this preview will show a
-        sample response. Later, it will connect to the Gita-only AI API.
-      </p>
+      menuBtn.addEventListener('click', () => {
+        const isOpen = document.body.classList.toggle('menu-open');
+        menuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
 
-      <form id="gita-qa-form">
-        <label for="gita-question">Your question or dilemma</label><br />
-        <textarea id="gita-question" name="gita-question" rows="4" style="width:100%;"></textarea>
-        <br /><br />
-        <button type="submit">Ask the Gita</button>
-      </form>
+      sidebar.addEventListener('click', (e) => {
+        if (e.target.closest('a')) {
+          document.body.classList.remove('menu-open');
+          menuBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
 
-      <div id="gita-qa-response" style="margin-top:1rem;">
-        <!-- We’ll fill this with JS later -->
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer>
-    <p>
-      Gita Ashram is a part of Atma Samvad inside the Atma Vani ecosystem.
-    </p>
-  </footer>
-
-  <!-- We will add app.js later, just before </body> -->
-  <link rel="stylesheet" href="styles.css">
-            <!-- FOOTER -->
-      <footer class="av-footer">
-        <div class="av-footer-main">
-          <p>
-            Atma Samvad — Gita Ashram is a part of the Atma Vani spiritual ecosystem.
-            This experience offers gentle, scripture-rooted reflections and is not a
-            substitute for professional medical, legal, or financial advice.
-          </p>
-        </div>
-        <div class="av-footer-links">
-          <a href="https://atmavani.life/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>
-          <span>•</span>
-          <a href="https://atmavani.life/terms-and-conditions" target="_blank" rel="noopener">Terms &amp; Conditions</a>
-          <span>•</span>
-          <a href="https://atmavani.life/refund-policy" target="_blank" rel="noopener">Refund Policy</a>
-        </div>
-      </footer>
-
-    </div> <!-- .av-main -->
-  </div> <!-- .av-page -->
-
-<script src="app.js"></script>
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          document.body.classList.remove('menu-open');
+          menuBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+    })();
+  </script>
 </body>
+
 </html>
