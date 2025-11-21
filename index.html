@@ -212,6 +212,94 @@ padding-bottom: 180px !important;   /* ← reliable on Android */
 #micHelp .btn.primary{background:linear-gradient(90deg,#ff7a18,#ff9340);color:#6b2f00;font-weight:800;border:none}
 #micHelp a{color:#ff7a18;font-weight:700}
 
+/* ===== GITA ASHRAM LAYOUT + BEAUTY ===== */
+
+/* Content container inside main area */
+.av-shell {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 24px 16px;
+}
+
+/* Nice spacing between sections */
+.av-main section {
+  margin-bottom: 32px;
+}
+
+/* Header band (we'll later reuse for trial info) */
+.av-header {
+  background: #fff7ea;
+  border-bottom: 1px solid var(--border);
+  padding: 24px 0 16px;
+}
+
+.av-header h1 {
+  margin: 0 0 6px;
+  font-size: 28px;
+  font-weight: 900;
+  color: #182230;
+}
+
+.av-header p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* Section headings */
+.av-main h2 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 20px;
+  font-weight: 800;
+  color: #182230;
+}
+
+/* Feature cards grid */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.feature-card {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 16px 18px;
+  box-shadow: var(--shadow);
+  transition: transform 0.08s ease, box-shadow 0.15s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.feature-card h3 {
+  margin: 0 0 6px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.feature-card p {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--muted);
+}
+
+/* Gita Q&A textbox – make it clearly visible */
+.gita-textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  font-size: 13px;
+  line-height: 1.4;
+}
+    
   </style>
 <head>
   <meta charset="UTF-8" />
