@@ -606,12 +606,23 @@ padding-bottom: 180px !important;   /* ← reliable on Android */
           </div>
         </div>
       </header>
-      <!-- Trial banner (visual only for now) -->
-      <div class="trial-banner">
+            <!-- Trial banner (wired to Atma Samvad logic later) -->
+      <div id="trialBanner" class="trial-banner" style="display: none;">
         <div class="trial-inner">
           <div class="trial-label">
-            <span>Full access trial — <strong>0 days left</strong></span>
+            <!-- This text will be controlled by JS (same as Atma Samvad) -->
+            <span id="trialText">Sign in to start your 3-day trial.</span>
           </div>
+          <button
+            class="trial-upgrade-btn"
+            type="button"
+            id="trialUpgrade"
+            onclick="window.location.href='https://www.atmavani.life/atma-samvad-pricing'"
+          >
+            Upgrade
+          </button>
+        </div>
+      </div>
           <button class="trial-upgrade-btn" type="button">
             Upgrade
           </button>
