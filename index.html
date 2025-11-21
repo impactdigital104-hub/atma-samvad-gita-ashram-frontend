@@ -1,5 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
+  <style>
+    :root{
+      --bg:#ffffff;
+      --panel:#f6f8fa;
+      --soft:#eef2f6;
+      --text:#0a0f16;
+      --muted:#66768a;
+      --accent:#ff7a18;
+      --accent-2:#ffb703;
+      --accent-3:#ff9340;
+      --accent-4:#fff3d6;
+      --border:rgba(0,0,0,0.08);
+      --chip:#f4f6f8;
+      --shadow:0 8px 24px rgba(0,0,0,.06);
+      --sidebar-w: 248px;
+      --tip-text:#7a2f00;
+      --policy-link:#ff7a18;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,"Noto Sans","Helvetica Neue",Arial;background:var(--bg);color:var(--text);line-height:1.55;font-size:13px}
+    a{color:inherit;text-decoration:none}
+    .app{min-height:100%;display:flex}
+   .sidebar{width:var(--sidebar-w);border-right:1px solid var(--border);background:#fff;display:flex;flex-direction:column;position:fixed;left:0;top:0;bottom:0;z-index:100;overflow-y:auto;overflow-x:visible;padding-bottom:180px}
+    .brand{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:8px;padding:12px;border-bottom:1px solid var(--border);background:#fff}
+    .brand img{width:148px;height:auto;object-fit:contain;display:block}
+    .section{padding:10px 12px 4px;color:#425466;font-size:10px;font-weight:800;letter-spacing:.45px;text-transform:uppercase}
+    .menu{padding:0 6px 6px;display:flex;flex-direction:column;gap:2px}
+    .item{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:10px;cursor:pointer;font-weight:500;color:#182230;position:relative}
+    .item:hover{background:var(--panel)}
+    .item svg{width:18px;height:18px;flex:0 0 18px;stroke:var(--accent);stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
+    .subgroup{padding:2px 6px 6px}
+    .subhead{font-size:11.5px;color:var(--accent);font-weight:800;margin:10px 12px 6px;display:flex;align-items:center;gap:6px}
+    .subhead::before{content:"";width:6px;height:6px;border-radius:50%;background:linear-gradient(90deg,var(--accent),var(--accent-2))}
+    .spacer{flex:1}
+    .account{border-top:1px solid var(--border);padding:8px 6px 10px;background:#fff}
+    .tip{position:absolute;left:12px;right:12px;bottom:100%;transform:translateY(-8px);background:linear-gradient(90deg,var(--accent-4),#ffe7b0);color:var(--tip-text);border:1px solid var(--accent-2);border-radius:8px;padding:7px 9px;font-size:12px;font-weight:600;box-shadow:0 6px 18px rgba(255,161,22,.3);opacity:0;pointer-events:none;z-index:1000}
+    .tip:after{content:"";position:absolute;left:18px;top:100%;width:10px;height:10px;transform:translateY(-1px) rotate(45deg);background:linear-gradient(90deg,var(--accent-4),#ffe7b0);border-right:1px solid var(--accent-2);border-bottom:1px solid var(--accent-2)}
+    .item:hover .tip,.item:focus-within .tip{opacity:1}
+    .info{margin-left:auto;width:18px;height:18px;border-radius:50%;border:1px solid var(--accent-2);color:#tip-text;display:flex;align-items:center;justify-content:center;font-size:12px;line-height:1;background:var(--accent-4)}
+
+    .main{margin-left:var(--sidebar-w);display:flex;flex-direction:column;flex:1}
+    .hero{max-width:980px;margin:12px auto 6px;padding:0 14px}
+    .hero h2{margin:4px 0 6px;font-size:24px;font-weight:900;color:#182230}
+    .hero p{margin:0;color:#334155;font-size:14px}
+
+    .card{background:#fff;border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow)}
+    .chat{flex:1;display:flex;flex-direction:column;gap:8px;padding:6px 14px 120px;max-width:980px;margin:0 auto;width:100%}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;padding:8px}
+    .chip{cursor:pointer;padding:6px 10px;border-radius:999px;background:var(--chip);border:1px solid var(--border);color:#1f2937;font-size:12.5px;transition:transform .08s ease,background .2s ease}
+    .chip:hover{transform:translateY(-1px);background:#f0f5fa}
+    .flow{display:flex;flex-direction:column;gap:8px;padding:8px;max-height:58vh;overflow:auto;scrollbar-width:thin;background:#fff}
+    .msg{display:flex;gap:8px;align-items:flex-start}
+    .msg .bubble{padding:10px 12px;border-radius:14px;max-width:80%;border:1px solid var(--border);white-space:pre-wrap;word-wrap:break-word}
+    .user .bubble{background:#f7fafc}
+    .bot .bubble{background:#fffaf1}
+    .msg .who{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;border:1px solid var(--border);background:#fff;color:#475569;flex:0 0 26px}
+    .who.om{background:linear-gradient(90deg,var(--accent),var(--accent-3));color:#6b2f00;border:none;font-weight:900;font-family:"Noto Sans Devanagari","Noto Sans",Arial,sans-serif;line-height:1}
+    .who.usericon{border-color:var(--accent-2);color:#6b2f00;background:#fff}
+    .status{margin:0;padding:7px 10px;font-size:12.5px;color:#5a2a00;background:linear-gradient(90deg,var(--accent-2),#ffe29a);border-radius:10px;display:flex;align-items:center;gap:8px;justify-content:center;min-height:30px}
+    .status .dot{width:7px;height:7px;border-radius:50%;background:#7a2f00}
+    .composer{margin:4px 0 10px;padding:8px;display:flex;flex-direction:column;gap:8px}
+    .inputRow{display:flex;gap:8px;align-items:flex-end;background:#fff;border:1px solid var(--border);border-radius:14px;padding:8px}
+    textarea{flex:1;min-height:42px;max-height:140px;resize:vertical;background:transparent;border:none;outline:none;color:#var(--text);font-size:13.5px;line-height:1.4}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:none;cursor:pointer;padding:8px 12px;border-radius:12px;color:#6b2f00;background:linear-gradient(90deg,var(--accent),var(--accent-3));font-weight:800;transition:transform .06s ease,filter .2s ease}
+    .btn:hover{filter:brightness(1.02)}
+    .btn.secondary{background:#eef2f6;border:1px solid var(--border);color:#6b2f00}
+    .row{display:flex;gap:8px;align-items:center;justify-content:flex-end;flex-wrap:wrap}
+    .mic{width:40px;height:40px;border-radius:12px;border:1px solid var(--border);background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .06s ease,box-shadow .2s ease}
+    .mic.rec{box-shadow:0 0 0 3px rgba(244,63,94,.25) inset}
+    .mic svg{width:18px;height:18px;fill:#6b2f00}
+
+    .policies{position:fixed;left:0;right:0;bottom:42px;background:#fff;border-top:1px solid var(--border);padding:6px 14px;z-index:31}
+    .policies .inner{max-width:980px;margin:0 auto;font-size:11.5px;color:#6b2f00}
+    .policies a{color:var(--policy-link);font-weight:700;margin-right:12px}
+    .policies a:last-child{margin-right:0}
+    .liability{position:fixed;left:0;right:0;bottom:0;background:#ffffff;border-top:1px solid var(--border);padding:8px 14px;z-index:30}
+    .liability .inner{max-width:980px;margin:0 auto;color:#475569;font-size:12px}
+
+    /* search modal */
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.18);z-index:25}
+    .modal.open{display:flex}
+    .modal .box{width:min(640px,92vw);background:#fff;border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);padding:12px}
+    .modal .head{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+    .modal input[type="search"]{flex:1;padding:10px 12px;border:1px solid var(--border);border-radius:10px;font-size:13px}
+    .modal .results{max-height:46vh;overflow:auto;border-top:1px dashed var(--border);margin-top:6px;padding-top:6px}
+    .result{padding:8px;border:1px solid var(--border);border-radius:10px;margin-bottom:8px;cursor:pointer;background:#fff}
+    .result:hover{background:#fff8ec;border-color:#ffd59a}
+    .result .meta{font-size:11px;color:#7a2f00;margin-bottom:4px}
+    mark{background:#ffe29a;padding:0 2px;border-radius:3px}
+/* === [RESPONSIVE ADDITIONS] — safe: only adds new rules === */
+
+/* Base hamburger styling (hidden on desktop by default) */
+.hamburger {
+  display: none;           /* we reveal it only on small screens */
+  border: none;
+  background: transparent;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* Mobile breakpoint */
+@media (max-width: 768px) {
+  :root {
+    --sidebar-w: 248px; /* keep var available on mobile */
+  }
+
+  /* Show the hamburger and pin it at top-left */
+  .hamburger {
+    display: inline-block;
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 10010;         /* above sidebar */
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: #ffffffcc;  /* subtle background for contrast */
+    backdrop-filter: blur(6px);
+  }
+
+  /* Off-canvas sidebar by default on phones */
+  #sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--sidebar-w);
+    height: 100dvh;          /* mobile safe viewport height */
+    transform: translateX(-100%);
+    transition: transform 220ms ease-in-out;
+    z-index: 10000;
+  }
+
+  /* When menu is open, slide sidebar in */
+  body.menu-open #sidebar {
+    transform: translateX(0);
+  }
+
+  /* Prevent background scroll when menu is open */
+  body.menu-open {
+    overflow: hidden;
+    touch-action: none;
+  }
+
+  /* Make the main content full-width on mobile */
+  .main {
+    margin-left: 0 !important;
+/* Also pad the page itself, in case body is the scroller on some devices */
+body {
+  padding-bottom: 200px !important;
+}
+padding-bottom: 180px !important;   /* ← reliable on Android */
+  }
+
+  /* Avoid accidental horizontal scrolling */
+  html, body {
+    overflow-x: hidden;
+  }
+
+  /* Scale media to container */
+  img, video, canvas {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Optional: search modal sizing on phones */
+  .modal .box {
+    max-width: 92vw;
+    max-height: 80vh;
+    overflow: auto;
+  }
+
+  /* Correct: bottom padding for composer on phones (class is inputRow) */
+  .composer, .inputRow, .chat-composer {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* Prevent hamburger overlapping the title */
+  .hero { padding-left: 56px; }
+
+  /* Keep the liability disclaimer readable on mobile */
+  .liability .inner {
+    display: block;
+    width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+    white-space: normal;
+    overflow: visible;
+    text-indent: 0;
+    margin-left: 0;
+  }
+
+  /* Make the fixed bars clear the phone's gesture bar */
+  liability {
+  padding: 18px 14px 22px;  /* extra bottom padding so its last line never kisses the edge */
+  }
+  .policies {
+  bottom: 68px;  /* was 42px — 56px matches the liability bar height better */
+  }
+
+} /* end mobile block */
+/* === Mic Help overlay (mobile-friendly) === */
+#micHelp{display:none;position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.5)}
+#micHelp .box{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:#fff;border:1px solid #eee;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.12);padding:14px;max-width:92vw}
+#micHelp .box h4{margin:0 0 8px;font-size:14px}
+#micHelp .tip{display:none;font-size:12.5px;color:#3a2a00;line-height:1.45;margin:8px 0}
+#micHelp .row{display:flex;gap:8px;justify-content:flex-end;margin-top:10px}
+#micHelp .btn{padding:8px 12px;border-radius:10px;border:1px solid #eee;background:#f7f7f7;cursor:pointer}
+#micHelp .btn.primary{background:linear-gradient(90deg,#ff7a18,#ff9340);color:#6b2f00;font-weight:800;border:none}
+#micHelp a{color:#ff7a18;font-weight:700}
+
+  </style>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
