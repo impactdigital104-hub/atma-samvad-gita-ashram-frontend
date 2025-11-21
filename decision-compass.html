@@ -636,6 +636,37 @@
           bottom: 68px;
         }
       }
+      /* === Mobile layout for Decision Compass === */
+@media (max-width: 768px) {
+
+  /* Make the main content breathe on phones */
+  .av-main {
+    padding: 16px 12px 140px;
+  }
+
+  /* Stack the two main cards vertically */
+  .dc-layout {
+    display: block;          /* override the desktop grid */
+  }
+
+  .dc-card {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 16px;
+  }
+
+  /* Stack any side-by-side form rows */
+  .form-row {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .form-row .form-group {
+    width: 100%;
+  }
+}
     </style>
   </head>
 
