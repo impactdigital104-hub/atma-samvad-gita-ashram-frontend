@@ -542,7 +542,30 @@
         line-height: 1;
         cursor: pointer;
       }
+/* Gita Decision Compass – orange accent text */
+.av-header h1,
+.dc-card h3,
+.form-group label {
+  color: var(--accent);
+}
 
+/* Small back-link chip */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 122, 24, 0.4);
+  background: #ffffff;
+  margin-bottom: 6px;
+}
+.back-link:hover {
+  background: #fff7ea;
+}
       @media (max-width: 768px) {
         :root {
           --sidebar-w: 248px;
@@ -863,13 +886,14 @@
         <!-- Header -->
         <header class="av-header">
           <div class="av-shell">
-            <div class="av-logo-area">
-              <h1>Gita Decision Compass</h1>
-              <p>
-                Bring a real-life dilemma to the Bhagavad Gita and receive
-                a calm, verse-backed reflection.
-              </p>
-            </div>
+                <div class="av-logo-area">
+      <a href="/" class="back-link">← Back to Gita Ashram</a>
+      <h1>Gita Decision Compass</h1>
+      <p>
+        Bring a real-life dilemma to the Bhagavad Gita and receive
+        a calm, verse-backed reflection.
+      </p>
+    </div>
           </div>
         </header>
 
