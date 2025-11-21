@@ -1,166 +1,1143 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gita Decision Compass — Atma Samvad · Gita Ashram</title>
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <!-- Page Wrapper -->
-  <div class="page">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>
+      Gita Decision Compass — Atma Samvad · Gita Ashram
+    </title>
 
-    <!-- Header -->
-    <header class="site-header">
-      <div class="site-header-inner">
-        <div class="branding">
-          <h1>Atma Samvad — Gita Ashram</h1>
-          <p class="tagline">Gita Decision Compass · Ask the Gita before you act</p>
+    <!-- Inline styling to match Gita Ashram home -->
+    <style>
+      :root {
+        --bg: #ffffff;
+        --panel: #f6f8fa;
+        --soft: #eef2f6;
+        --text: #0a0f16;
+        --muted: #66768a;
+        --accent: #ff7a18;
+        --accent-2: #ffb703;
+        --accent-3: #ff9340;
+        --accent-4: #fff3d6;
+        --border: rgba(0, 0, 0, 0.08);
+        --chip: #f4f6f8;
+        --shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+        --sidebar-w: 248px;
+        --tip-text: #7a2f00;
+        --policy-link: #ff7a18;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI,
+          Roboto, 'Noto Sans', 'Helvetica Neue', Arial;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.55;
+        font-size: 13px;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .app {
+        min-height: 100%;
+        display: flex;
+      }
+
+      /* SIDEBAR (same as Gita Ashram home) */
+      .sidebar {
+        width: var(--sidebar-w);
+        border-right: 1px solid var(--border);
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 100;
+        overflow-y: auto;
+        overflow-x: visible;
+        padding-bottom: 180px;
+      }
+
+      .brand {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px;
+        border-bottom: 1px solid var(--border);
+        background: #fff;
+      }
+
+      .brand img {
+        width: 148px;
+        height: auto;
+        object-fit: contain;
+        display: block;
+      }
+
+      .section {
+        padding: 10px 12px 4px;
+        color: #425466;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.45px;
+        text-transform: uppercase;
+      }
+
+      .menu {
+        padding: 0 6px 6px;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 8px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: 500;
+        color: #182230;
+        position: relative;
+      }
+
+      .item:hover {
+        background: var(--panel);
+      }
+
+      .item svg {
+        width: 18px;
+        height: 18px;
+        flex: 0 0 18px;
+        stroke: var(--accent);
+        stroke-width: 1.8;
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .subgroup {
+        padding: 2px 6px 6px;
+      }
+
+      .subhead {
+        font-size: 11.5px;
+        color: var(--accent);
+        font-weight: 800;
+        margin: 10px 12px 6px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .subhead::before {
+        content: '';
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      }
+
+      .spacer {
+        flex: 1;
+      }
+
+      .account {
+        border-top: 1px solid var(--border);
+        padding: 8px 6px 10px;
+        background: #fff;
+      }
+
+      .tip {
+        position: absolute;
+        left: 12px;
+        right: 12px;
+        bottom: 100%;
+        transform: translateY(-8px);
+        background: linear-gradient(90deg, var(--accent-4), #ffe7b0);
+        color: var(--tip-text);
+        border: 1px solid var(--accent-2);
+        border-radius: 8px;
+        padding: 7px 9px;
+        font-size: 12px;
+        font-weight: 600;
+        box-shadow: 0 6px 18px rgba(255, 161, 22, 0.3);
+        opacity: 0;
+        pointer-events: none;
+        z-index: 1000;
+      }
+
+      .tip:after {
+        content: '';
+        position: absolute;
+        left: 18px;
+        top: 100%;
+        width: 10px;
+        height: 10px;
+        transform: translateY(-1px) rotate(45deg);
+        background: linear-gradient(90deg, var(--accent-4), #ffe7b0);
+        border-right: 1px solid var(--accent-2);
+        border-bottom: 1px solid var(--accent-2);
+      }
+
+      .item:hover .tip,
+      .item:focus-within .tip {
+        opacity: 1;
+      }
+
+      .info {
+        margin-left: auto;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        border: 1px solid var(--accent-2);
+        color: #tip-text;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        line-height: 1;
+        background: var(--accent-4);
+      }
+
+      /* MAIN AREA */
+      .main {
+        margin-left: var(--sidebar-w);
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+      }
+
+      .av-shell {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 24px 24px 16px;
+      }
+
+      .av-header {
+        background: #fff7ea;
+        border-bottom: 1px solid var(--border);
+        padding: 24px 0 16px;
+      }
+
+      .av-header h1 {
+        margin: 0 0 6px;
+        font-size: 28px;
+        font-weight: 900;
+        color: #182230;
+      }
+
+      .av-header p {
+        margin: 0;
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      .av-main {
+        padding-bottom: 40px;
+      }
+
+      .av-main h2 {
+        margin-top: 0;
+        margin-bottom: 8px;
+        font-size: 20px;
+        font-weight: 800;
+        color: var(--accent);
+      }
+
+      /* Trial banner */
+      .trial-banner {
+        background: #0f172a;
+        color: #f9fafb;
+        border-bottom: 1px solid #020617;
+      }
+
+      .trial-inner {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 10px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        font-size: 13px;
+      }
+
+      .trial-upgrade-btn {
+        border: none;
+        border-radius: 999px;
+        padding: 6px 14px;
+        font-size: 12.5px;
+        font-weight: 700;
+        cursor: pointer;
+        background: #f9fafb;
+        color: #020617;
+        transition: transform 0.06s ease, box-shadow 0.15s ease,
+          background 0.15s ease;
+      }
+
+      .trial-upgrade-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 8px 20px rgba(15, 23, 42, 0.35);
+        background: #e5e7eb;
+      }
+
+      /* Decision Compass layout */
+      .dc-intro {
+        padding-top: 8px;
+        padding-bottom: 8px;
+      }
+
+      .dc-intro p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13.5px;
+      }
+
+      .dc-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+        gap: 20px;
+        align-items: flex-start;
+      }
+
+      .dc-card {
+        background: #ffffff;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 122, 24, 0.2);
+        box-shadow: var(--shadow);
+        padding: 18px 20px 20px;
+      }
+
+      .dc-card h3 {
+        margin: 0 0 6px;
+        font-size: 16px;
+        font-weight: 800;
+        color: #182230;
+      }
+
+      .dc-card p.dc-subtext {
+        margin: 0 0 12px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .form-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .form-row-inline {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 10px;
+      }
+
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        font-size: 13px;
+      }
+
+      .form-group label {
+        font-weight: 600;
+        color: #1f2937;
+      }
+
+      .form-group small {
+        font-size: 11.5px;
+        color: var(--muted);
+      }
+
+      .form-group textarea,
+      .form-group select,
+      .form-group input[type='text'] {
+        padding: 9px 11px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        background: #ffffff;
+        font-size: 13px;
+        resize: vertical;
+      }
+
+      .form-group textarea:focus,
+      .form-group select:focus,
+      .form-group input[type='text']:focus {
+        outline: none;
+        border-color: var(--accent);
+        box-shadow: 0 0 0 1px rgba(255, 122, 24, 0.35);
+      }
+
+      .form-actions {
+        margin-top: 8px;
+      }
+
+      .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 14px;
+        border-radius: 999px;
+        border: none;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 800;
+        color: #6b2f00;
+        background: linear-gradient(
+          90deg,
+          var(--accent),
+          var(--accent-3)
+        );
+        transition: transform 0.08s ease, filter 0.15s ease;
+      }
+
+      .btn-primary:hover {
+        filter: brightness(1.03);
+        transform: translateY(-1px);
+      }
+
+      .helper-note {
+        margin-top: 10px;
+        font-size: 11.5px;
+        color: var(--muted);
+      }
+
+      .section-subtext {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .status-message {
+        margin-top: 10px;
+        font-size: 12.5px;
+        padding: 8px 10px;
+        border-radius: 10px;
+        background: #fff7ea;
+        color: #7a2f00;
+      }
+
+      .status-message.error {
+        background: #fef2f2;
+        color: #991b1b;
+      }
+
+      .dc-result {
+        margin-top: 14px;
+        font-size: 13px;
+      }
+
+      .dc-result h4 {
+        margin-bottom: 4px;
+      }
+
+      /* Gita verses inside result */
+      .dc-verses {
+        list-style: none;
+        padding-left: 0;
+        margin: 0;
+      }
+
+      .dc-verses li {
+        padding: 8px 0;
+        border-bottom: 1px solid var(--soft);
+      }
+
+      .dc-verse-devanagari {
+        font-family: 'Noto Sans Devanagari', 'Noto Sans', Arial, sans-serif;
+        font-size: 14px;
+      }
+
+      .dc-verse-translit {
+        font-size: 12.5px;
+        color: #4b5563;
+      }
+
+      .dc-verse-en {
+        font-size: 13px;
+      }
+
+      .dc-verse-hi {
+        font-size: 13px;
+        color: #334155;
+      }
+
+      .dc-verse-note {
+        font-size: 12.5px;
+        color: #7a2f00;
+      }
+
+      /* Fixed policies + liability (same as home) */
+      .policies {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 42px;
+        background: #fff;
+        border-top: 1px solid var(--border);
+        padding: 6px 14px;
+        z-index: 31;
+      }
+
+      .policies .inner {
+        max-width: 980px;
+        margin: 0 auto;
+        font-size: 11.5px;
+        color: #6b2f00;
+      }
+
+      .policies a {
+        color: var(--policy-link);
+        font-weight: 700;
+        margin-right: 12px;
+      }
+
+      .liability {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #ffffff;
+        border-top: 1px solid var(--border);
+        padding: 8px 14px;
+        z-index: 30;
+      }
+
+      .liability .inner {
+        max-width: 980px;
+        margin: 0 auto;
+        color: #475569;
+        font-size: 12px;
+      }
+
+      /* Hamburger for mobile */
+      .hamburger {
+        display: none;
+        border: none;
+        background: transparent;
+        font-size: 26px;
+        line-height: 1;
+        cursor: pointer;
+      }
+
+      @media (max-width: 768px) {
+        :root {
+          --sidebar-w: 248px;
+        }
+
+        .hamburger {
+          display: inline-block;
+          position: fixed;
+          top: 12px;
+          left: 12px;
+          z-index: 10010;
+          width: 40px;
+          height: 40px;
+          border-radius: 8px;
+          background: #ffffffcc;
+          backdrop-filter: blur(6px);
+        }
+
+        #sidebar {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: var(--sidebar-w);
+          height: 100dvh;
+          transform: translateX(-100%);
+          transition: transform 220ms ease-in-out;
+          z-index: 10000;
+        }
+
+        body.menu-open #sidebar {
+          transform: translateX(0);
+        }
+
+        body.menu-open {
+          overflow: hidden;
+          touch-action: none;
+        }
+
+        .main {
+          margin-left: 0 !important;
+        }
+
+        html,
+        body {
+          overflow-x: hidden;
+        }
+
+        img,
+        video,
+        canvas {
+          max-width: 100%;
+          height: auto;
+        }
+
+        .av-shell {
+          padding-left: 56px;
+          padding-right: 16px;
+        }
+
+        .liability .inner {
+          display: block;
+          width: 100%;
+          padding-left: 16px;
+          padding-right: 16px;
+        }
+
+        .policies {
+          bottom: 68px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="app">
+      <!-- HAMBURGER BUTTON (for mobile) -->
+      <button
+        id="menuBtn"
+        class="hamburger"
+        aria-label="Open menu"
+        aria-expanded="false"
+      >
+        ☰
+      </button>
+
+      <!-- SIDEBAR -->
+      <nav class="sidebar" id="sidebar">
+        <div class="brand">
+          <img
+            alt="Atma Vani logo"
+            src="https://atmavani.life/wp-content/uploads/2025/07/atma-vani-logo.jpg"
+          />
         </div>
-        <nav class="top-nav">
-          <a href="index.html" class="btn btn-secondary">&larr; Back to Gita Ashram Home</a>
-        </nav>
-      </div>
-    </header>
 
-    <!-- Main Content -->
-    <main class="main-content">
-      <section class="hero">
-        <div class="hero-inner">
-          <h2>Gita Decision Compass</h2>
-          <p>
-            Share a real-life dilemma and let the Gita reflect it back to you —
-            with a clear summary, guiding principles, supporting verses,
-            and a gentle, practical 3-step action plan.
-          </p>
+        <div class="section">Quick actions</div>
+        <div class="menu">
+          <a class="item" href="#new-chat">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 5v14M5 12h14" />
+            </svg>
+            <span>New Chat</span>
+            <span class="info">i</span>
+            <span class="tip">Start a fresh conversation.</span>
+          </a>
+          <a class="item" href="#search-chats">
+            <svg viewBox="0 0 24 24">
+              <circle cx="10" cy="10" r="4" />
+              <path d="M15 15l4 4" />
+            </svg>
+            <span>Search Chats</span>
+            <span class="info">i</span>
+            <span class="tip">Search within this session.</span>
+          </a>
         </div>
-      </section>
 
-      <!-- Form + Results Layout -->
-      <section class="section section-split">
-        <div class="section-inner split-layout">
-          <!-- Left: Input Form -->
-          <div class="card form-card">
-            <h3>Your Dilemma</h3>
-            <p class="section-subtext">
-              Describe your situation honestly. The more concrete you are, the more helpful the Compass can be.
-            </p>
+        <div class="section">Services</div>
 
-            <form id="decision-compass-form">
-              <!-- Situation (required) -->
-              <div class="form-group">
-                <label for="situation">Describe your situation or dilemma *</label>
-                <textarea
-                  id="situation"
-                  name="situation"
-                  rows="5"
-                  placeholder="Example: I have two job offers. One pays more but feels misaligned with my values..."
-                  required
-                ></textarea>
-              </div>
+        <div class="subhead">I. The Guru’s Role</div>
+        <div class="subgroup">
+          <a class="item" href="/atma-marg">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M7.5 20.5c-1.3 0-2.1-1-1.9-2 .2-.9 1.2-1.6 2.3-1.4 1.1.2 1.8 1.3 1.6 2.2-.1.7-.9 1.2-2 1.2zM15.3 18c-1.4 0-2.3-1.1-2-2.3.2-.9 1.4-1.6 2.6-1.4s1.9 1.2 1.7 2.1c-.2.9-1 1.6-2.3 1.6zM4 8c3-3 8-3 12 2"
+              />
+            </svg>
+            <span>Atma Marg</span>
+            <span class="info">i</span>
+            <span class="tip">
+              Custom spiritual path and chosen deity guidance.
+            </span>
+          </a>
+          <a class="item" href="/atma-sadhana">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M12 5c1.6 1.6 2.2 3.2 2.2 4.4-1-1-2.2-1-2.2-1s-1.2 0-2.2 1C9.8 8.2 10.4 6.6 12 5z"
+              />
+              <path
+                d="M12 20c5 0 8-3 8-3-3 0-5-2-5-4 0 0-1 2-3 2s-3-2-3-2c0 2-2 4-5 4 0 0 3 3 8 3z"
+              />
+            </svg>
+            <span>Atma Sadhana</span>
+            <span class="info">i</span>
+            <span class="tip">
+              Personalized daily spiritual practice and discipline.
+            </span>
+          </a>
+          <a class="item" href="https://samvad.atmavani.life/#hub">
+            <svg viewBox="0 0 24 24">
+              <path d="M3 6h11v7H8l-3 3z" />
+              <path d="M10 9h11v7h-4l-3 3" />
+            </svg>
+            <span>Atma Samvad</span>
+            <span class="info">i</span>
+            <span class="tip">
+              One-on-one personal guidance and spiritual dialogue.
+            </span>
+          </a>
+        </div>
 
-              <!-- Life Area -->
-              <div class="form-group">
-                <label for="lifeArea">Which area of life does this relate to?</label>
-                <select id="lifeArea" name="lifeArea">
-                  <option value="">Select (optional)</option>
-                  <option value="career">Career / Work</option>
-                  <option value="relationships">Relationships / Family</option>
-                  <option value="health">Health / Well-being</option>
-                  <option value="finances">Money / Finances</option>
-                  <option value="spiritual">Spiritual Life</option>
-                  <option value="other">Other / Mixed</option>
-                </select>
-              </div>
+        <div class="subhead">II. The Philosopher’s Role</div>
+        <div class="subgroup">
+          <a class="item" href="#vyakhya-vani">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M6 5h10a2 2 0 0 1 2 2v11H8a2 2 0 0 1-2-2z"
+              />
+              <path
+                d="M6 5a2 2 0 1 0 0 4h10"
+              />
+            </svg>
+            <span>Vyakhya Vani</span>
+            <span class="info">i</span>
+            <span class="tip">
+              Real-time scriptural interpretation for life problems.
+            </span>
+          </a>
+          <a class="item" href="#vani-adhyayan">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M3 7h8a4 4 0 0 1 4 4v7H7a4 4 0 0 0-4 4z"
+                transform="translate(0,-4)"
+              />
+              <path
+                d="M21 7h-8a4 4 0 0 0-4 4v7h8a4 4 0 0 1 4 4z"
+                transform="translate(0,-4)"
+              />
+            </svg>
+            <span>Vani Adhyayan</span>
+            <span class="info">i</span>
+            <span class="tip">
+              Structured courses for studying sacred Hindu texts.
+            </span>
+          </a>
+        </div>
 
-              <!-- Emotion -->
-              <div class="form-group">
-                <label for="emotion">What are you mainly feeling?</label>
-                <select id="emotion" name="emotion">
-                  <option value="">Select (optional)</option>
-                  <option value="anxious">Anxious / Restless</option>
-                  <option value="confused">Confused / Torn</option>
-                  <option value="guilty">Guilty</option>
-                  <option value="afraid">Afraid / Worried</option>
-                  <option value="angry">Angry / Resentful</option>
-                  <option value="sad">Sad / Disappointed</option>
-                </select>
-              </div>
+        <div class="subhead">III. The Divine Schedule</div>
+        <div class="subgroup">
+          <a class="item" href="#panchang-vani">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M7 2v3M17 2v3M3 8h18M5 5h14a2 2 0 0 1 2 2v13H3V7a2 2 0 0 1 2-2z"
+              />
+              <circle cx="8.5" cy="13.5" r="1.2" />
+            </svg>
+            <span>Panchang Vani</span>
+            <span class="info">i</span>
+            <span class="tip">
+              Daily auspicious timings and cosmic schedule guidance.
+            </span>
+          </a>
+          <a class="item" href="#astro-vani">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="7" />
+              <path d="M12 5v14M5 12h14M7.5 7.5l9 9M16.5 7.5l-9 9" />
+            </svg>
+            <span>Astro Vani</span>
+            <span class="info">i</span>
+            <span class="tip">
+              Personalized astrological chart readings and insights.
+            </span>
+          </a>
+        </div>
 
-              <!-- Desired Outcome -->
-              <div class="form-group">
-                <label for="desiredOutcome">What outcome are you hoping for?</label>
-                <input
-                  type="text"
-                  id="desiredOutcome"
-                  name="desiredOutcome"
-                  placeholder="Example: Clarity on which job aligns better with my dharma."
-                />
-              </div>
+        <div class="subhead">IV. The Devotional Experience</div>
+        <div class="subgroup">
+          <a class="item" href="#bhajan-vani">
+            <svg viewBox="0 0 24 24">
+              <path
+                d="M14 3v12a3 3 0 1 1-2-2.8V6l8-3v9"
+              />
+            </svg>
+            <span>Bhajan Vani</span>
+            <span class="info">i</span>
+            <span class="tip">
+              On-demand AI-generated devotional music and hymns.
+            </span>
+          </a>
+          <a class="item" href="#vani-satsang">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="8" r="2" />
+              <path
+                d="M4 20a8 8 0 0 1 16 0"
+              />
+              <path
+                d="M12 14c2 0 4 1 5 3-1.5 1-3.2 1.5-5 1.5S8.5 18 7 17c1-2 3-3 5-3z"
+              />
+            </svg>
+            <span>Vani Satsang</span>
+            <span class="info">i</span>
+            <span class="tip">
+              Live online spiritual gatherings and collective events.
+            </span>
+          </a>
+        </div>
 
-              <!-- Constraints -->
-              <div class="form-group">
-                <label for="constraints">Constraints or responsibilities (optional)</label>
-                <textarea
-                  id="constraints"
-                  name="constraints"
-                  rows="3"
-                  placeholder="Example: I support my parents financially, I have EMIs, children in school, etc."
-                ></textarea>
-              </div>
+        <div class="spacer"></div>
 
-              <!-- Submit -->
-              <div class="form-actions">
-                <button type="submit" class="btn btn-primary">
-                  Ask the Gita (Decision Compass)
-                </button>
-              </div>
+        <div class="account">
+          <div class="subhead" style="margin-top: 0">Account</div>
 
-              <!-- Helper Note -->
-              <p class="helper-note">
-                Note: This is an AI-assisted reflection based on the Bhagavad Gita.
-                It does not replace professional, legal, medical, or financial advice.
+          <a class="item" href="#signup" id="avSignInLink">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="8" r="3" />
+              <path
+                d="M5 20a7 7 0 0 1 14 0"
+              />
+            </svg>
+            <span>Sign Up / Sign In</span>
+            <span
+              id="quotaBadge"
+              style="
+                margin-left: auto;
+                font-size: 11px;
+                font-weight: 800;
+                color: #6b2f00;
+                background: #fff3d6;
+                border: 1px solid #ffb703;
+                border-radius: 999px;
+                padding: 2px 6px;
+                display: inline-block;
+              "
+              >0/10</span
+            >
+          </a>
+
+          <a class="item" href="#account" id="avSignOutLink">
+            <svg viewBox="0 0 24 24">
+              <rect
+                x="4"
+                y="6"
+                width="16"
+                height="12"
+                rx="1.5"
+              />
+              <path d="M8 6v12" />
+            </svg>
+            <span>Sign Out</span>
+          </a>
+
+          <a class="item" href="#billing">
+            <svg viewBox="0 0 24 24">
+              <rect
+                x="3"
+                y="7"
+                width="18"
+                height="10"
+                rx="1.2"
+              />
+              <path d="M3 11h18M7 15h4" />
+            </svg>
+            <span>Billing</span>
+          </a>
+        </div>
+      </nav>
+
+      <!-- MAIN CONTENT AREA -->
+      <div class="main">
+        <!-- Header -->
+        <header class="av-header">
+          <div class="av-shell">
+            <div class="av-logo-area">
+              <h1>Gita Decision Compass</h1>
+              <p>
+                Bring a real-life dilemma to the Bhagavad Gita and receive
+                a calm, verse-backed reflection.
               </p>
-            </form>
+            </div>
           </div>
+        </header>
 
-          <!-- Right: Result Area -->
-          <div class="card results-card">
-            <h3>Gita Reflection</h3>
-            <p class="section-subtext" id="results-placeholder">
-              Your Gita-based reflection will appear here once you submit your dilemma.
-            </p>
-
-            <!-- Loading / Error States -->
-            <div id="dc-loading" class="status-message" style="display: none;">
-              Preparing a Gita reflection for your situation…
+        <!-- Trial banner (visual only for now) -->
+        <div class="trial-banner">
+          <div class="trial-inner">
+            <div class="trial-label">
+              <span
+                >Full access trial — <strong>0 days left</strong></span
+              >
             </div>
-            <div id="dc-error" class="status-message error" style="display: none;">
-              Something went wrong. Please check your input and try again.
-            </div>
-
-            <!-- Final Rendered Result -->
-            <div id="dc-result" class="dc-result">
-              <!-- JS will inject the dummy structured response here -->
-            </div>
+            <button class="trial-upgrade-btn" type="button">
+              Upgrade
+            </button>
           </div>
         </div>
-      </section>
-    </main>
 
-    <!-- Footer -->
-    <footer class="site-footer">
-      <div class="site-footer-inner">
-        <p>&copy; Atma Vani · Atma Samvad — Gita Ashram</p>
-        <p class="footer-note">
-          This is an experimental feature. Always use your own discernment and,
-          when needed, seek wise human counsel alongside the Gita.
-        </p>
+        <!-- Main content -->
+        <main class="av-main">
+          <!-- Intro -->
+          <section class="av-shell dc-intro">
+            <h2>Your Gita-aligned reflection space</h2>
+            <p>
+              Describe your situation honestly — the Gita will respond
+              with a set of carefully chosen verses, a high-level
+              reflection, and a gentle action plan rooted in dharma and
+              inner steadiness.
+            </p>
+          </section>
+
+          <!-- Form + Result two-column layout -->
+          <section class="av-shell">
+            <div class="dc-layout">
+              <!-- Left: Input form -->
+              <div class="dc-card">
+                <h3>Your dilemma</h3>
+                <p class="dc-subtext">
+                  Share your situation in your own words. You can keep
+                  names and details anonymous if you like, as long as
+                  the essence is clear.
+                </p>
+
+                <form id="decision-compass-form">
+                  <div class="form-grid">
+                    <!-- Situation (required) -->
+                    <div class="form-group">
+                      <label for="situation">
+                        Describe your situation or dilemma
+                        <span style="color: #b91c1c">*</span>
+                      </label>
+                      <textarea
+                        id="situation"
+                        name="situation"
+                        rows="5"
+                        placeholder="Example: I have two job offers. One pays more but feels misaligned with my values…"
+                        required
+                      ></textarea>
+                    </div>
+
+                    <!-- Life Area + Emotion inline -->
+                    <div class="form-row-inline">
+                      <!-- Life Area -->
+                      <div class="form-group">
+                        <label for="lifeArea">
+                          Which area of life does this relate to?
+                        </label>
+                        <select id="lifeArea" name="lifeArea">
+                          <option value="">Select (optional)</option>
+                          <option value="career">Career / Work</option>
+                          <option value="relationships">
+                            Relationships / Family
+                          </option>
+                          <option value="health">Health / Well-being</option>
+                          <option value="finance">Money / Finance</option>
+                          <option value="spiritual">
+                            Spiritual practice
+                          </option>
+                          <option value="other">Other / Mixed</option>
+                        </select>
+                      </div>
+
+                      <!-- Emotion -->
+                      <div class="form-group">
+                        <label for="emotion">
+                          What are you mainly feeling?
+                        </label>
+                        <select id="emotion" name="emotion">
+                          <option value="">Select (optional)</option>
+                          <option value="anxious">Anxious / Restless</option>
+                          <option value="confused">Confused / Torn</option>
+                          <option value="guilty">Guilty</option>
+                          <option value="afraid">Afraid / Worried</option>
+                          <option value="angry">Angry / Resentful</option>
+                          <option value="sad">Sad / Disappointed</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <!-- Desired Outcome -->
+                    <div class="form-group">
+                      <label for="desiredOutcome">
+                        What outcome are you hoping for?
+                      </label>
+                      <input
+                        type="text"
+                        id="desiredOutcome"
+                        name="desiredOutcome"
+                        placeholder="Example: Clarity on which job aligns better with my dharma."
+                      />
+                    </div>
+
+                    <!-- Constraints -->
+                    <div class="form-group">
+                      <label for="constraints">
+                        Constraints or responsibilities (optional)
+                      </label>
+                      <textarea
+                        id="constraints"
+                        name="constraints"
+                        rows="3"
+                        placeholder="Example: I support my parents financially, I have EMIs, children in school, etc."
+                      ></textarea>
+                    </div>
+
+                    <!-- Submit -->
+                    <div class="form-actions">
+                      <button
+                        type="submit"
+                        class="btn-primary"
+                      >
+                        Ask the Gita (Decision Compass)
+                      </button>
+                    </div>
+
+                    <!-- Helper Note -->
+                    <p class="helper-note">
+                      Note: This is an AI-assisted reflection based on
+                      the Bhagavad Gita. It does not replace
+                      professional, legal, medical, or financial advice.
+                    </p>
+                  </div>
+                </form>
+              </div>
+
+              <!-- Right: Result Area -->
+              <div class="dc-card">
+                <h3>Gita Reflection</h3>
+                <p
+                  class="section-subtext"
+                  id="results-placeholder"
+                >
+                  Your Gita-based reflection will appear here once you
+                  submit your dilemma.
+                </p>
+
+                <!-- Loading / Error States -->
+                <div
+                  id="dc-loading"
+                  class="status-message"
+                  style="display: none"
+                >
+                  Preparing a Gita reflection for your situation…
+                </div>
+                <div
+                  id="dc-error"
+                  class="status-message error"
+                  style="display: none"
+                >
+                  Something went wrong. Please check your input and try
+                  again.
+                </div>
+
+                <!-- Final Rendered Result -->
+                <div id="dc-result" class="dc-result">
+                  <!-- JS will inject the structured reflection here -->
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
       </div>
-    </footer>
-  </div>
+    </div>
 
-  <!-- Page Script -->
-  <script src="js/decision-compass.js" defer></script>
-</body>
+    <!-- POLICIES + LIABILITY (same as home) -->
+    <div class="policies">
+      <div class="inner" aria-label="Legal and support links">
+        <a
+          href="https://atmavani.life/privacy-policy/"
+          target="_blank"
+          rel="noopener"
+          >Privacy Policy</a
+        >
+        <span class="sep">•</span>
+        <a
+          href="https://atmavani.life/terms/"
+          target="_blank"
+          rel="noopener"
+          >Terms of Use</a
+        >
+        <span class="sep">•</span>
+        <a
+          href="https://atmavani.life/refunds/"
+          target="_blank"
+          rel="noopener"
+          >Refund &amp; Cancellation</a
+        >
+        <span class="sep">•</span>
+        <a
+          href="https://atmavani.life/cookies/"
+          target="_blank"
+          rel="noopener"
+          >Cookies Policy</a
+        >
+        <span class="sep">•</span>
+        <a
+          href="https://atmavani.life/data-usage/"
+          target="_blank"
+          rel="noopener"
+          >Data Usage Policy</a
+        >
+        <span class="sep">•</span>
+        <a
+          href="https://atmavani.life/contact/"
+          target="_blank"
+          rel="noopener"
+          >Contact</a
+        >
+      </div>
+    </div>
+
+    <div class="liability">
+      <div class="inner">
+        Namaste. As Atma Vani, this Gita Ashram experience provides
+        AI-driven responses which are informational only and not a
+        substitute for a qualified spiritual teacher or professional
+        advice.
+      </div>
+    </div>
+
+    <!-- Page Script: decision compass logic -->
+    <script src="js/decision-compass.js" defer></script>
+
+    <!-- Hamburger toggle logic -->
+    <script>
+      (function () {
+        const menuBtn = document.getElementById('menuBtn');
+        const sidebar = document.getElementById('sidebar');
+        if (!menuBtn || !sidebar) return;
+
+        menuBtn.addEventListener('click', () => {
+          const isOpen = document.body.classList.toggle('menu-open');
+          menuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+
+        sidebar.addEventListener('click', (e) => {
+          if (e.target.closest('a')) {
+            document.body.classList.remove('menu-open');
+            menuBtn.setAttribute('aria-expanded', 'false');
+          }
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            document.body.classList.remove('menu-open');
+            menuBtn.setAttribute('aria-expanded', 'false');
+          }
+        });
+      })();
+    </script>
+  </body>
 </html>
