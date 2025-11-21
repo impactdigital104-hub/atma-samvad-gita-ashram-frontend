@@ -634,13 +634,14 @@ padding-bottom: 180px !important;   /* ← reliable on Android */
         <section id="gita-ashram-features" class="av-shell">
           <h2>Three ways to walk with the Gita</h2>
           <div class="feature-grid">
-               <article class="feature-card">
+                  <article id="gita-decision-card" class="feature-card">
       <h3>Gita Decision Compass</h3>
       <p>
         Describe a real-life dilemma and receive a Gita-based perspective,
         supporting verses, and a simple 3-step action plan.
       </p>
     </article>
+
 
             <article class="feature-card">
               <h3>Shloka-to-Life Transformer</h3>
@@ -765,7 +766,18 @@ padding-bottom: 180px !important;   /* ← reliable on Android */
       qualified spiritual teacher or professional advice.
     </div>
   </div>
+  <script>
+    // Make the Gita Decision Compass card clickable
+    document.addEventListener("DOMContentLoaded", function () {
+      var dcCard = document.getElementById("gita-decision-card");
+      if (!dcCard) return;
 
+      dcCard.style.cursor = "pointer";
+      dcCard.addEventListener("click", function () {
+        window.location.href = "/gita/decision-compass.html";
+      });
+    });
+  </script>
   <!-- Gita Q&A logic -->
   <script src="app.js"></script>
 
