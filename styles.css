@@ -274,13 +274,22 @@ button:hover {
     padding: 20px 16px 140px;
   }
 
-  /* Stack cards in a single column on mobile */
-  .feature-grid,
-  .dc-layout,
-  .dc-grid {
+   /* Stack feature cards on the home page */
+  .feature-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 16px;
+  }
+
+  /* FORCE the Decision Compass cards to stack full-width on phones */
+  .dc-layout {
+    display: block !important;      /* no side-by-side layout */
+  }
+
+  .dc-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-bottom: 16px;
   }
 
   /* Softer padding for cards on small screens */
