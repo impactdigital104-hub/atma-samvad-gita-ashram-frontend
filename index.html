@@ -299,7 +299,163 @@ padding-bottom: 180px !important;   /* ← reliable on Android */
     <!-- MAIN AREA FOR GITA ASHRAM CONTENT -->
     <div class="main">
       <!-- ↓↓↓ PASTE YOUR ORIGINAL GITA CONTENT HERE ↓↓↓ -->
-      GITA_CONTENT_GOES_HERE
+    <div class="av-page">
+    <!-- LEFT SIDEBAR -->
+    <aside class="av-sidebar">
+      <div class="av-sidebar-inner">
+        <div class="av-sidebar-logo">
+          <div class="av-logo-mark">ॐ</div>
+          <div class="av-logo-text">
+            <div class="av-logo-title">Atma Vani</div>
+            <div class="av-logo-subtitle">Gita Ashram</div>
+          </div>
+        </div>
+
+        <nav class="av-nav">
+          <div class="av-nav-group">
+            <div class="av-nav-heading">Main</div>
+            <a href="https://atmavani.life" class="av-nav-link" target="_blank" rel="noopener">
+              ← Back to AtmaVani.life
+            </a>
+          </div>
+
+          <div class="av-nav-group">
+            <div class="av-nav-heading">Gita Ashram</div>
+            <a href="/" class="av-nav-link av-nav-link-active">
+              Ask the Gita
+            </a>
+            <a href="/gita/decision-compass.html" class="av-nav-link">
+              Gita Decision Compass
+            </a>
+            <!-- Future links:
+            <a href="#" class="av-nav-link">Shloka-to-Life</a>
+            <a href="#" class="av-nav-link">Gita Mind Coach</a>
+            -->
+          </div>
+
+          <div class="av-nav-group">
+            <div class="av-nav-heading">More from Atma Vani</div>
+            <a href="https://atmavani.life/atma-marg" class="av-nav-link" target="_blank" rel="noopener">
+              Atma Marg — Your Path
+            </a>
+            <a href="https://atmavani.life/atma-sadhana" class="av-nav-link" target="_blank" rel="noopener">
+              Atma Sadhana — Daily Practice
+            </a>
+            <a href="https://atmavani.life/atma-samvad-pricing" class="av-nav-link" target="_blank" rel="noopener">
+              Atma Samvad Pricing
+            </a>
+          </div>
+        </nav>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <div class="av-main">
+
+  <!-- Header -->
+  <header>
+    <div class="av-shell">
+      <div class="av-logo-area">
+        <h1>Atma Samvad — Gita Ashram</h1>
+        <p>The Bhagavad Gita as your living guide inside Atma Vani.</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main content -->
+  <main>
+    <!-- Intro / Overview -->
+    <section id="gita-ashram-overview">
+      <h2>Welcome to the Gita Ashram</h2>
+      <p>
+        This is your dedicated space to bring real-life questions, emotions,
+        and dilemmas to the Bhagavad Gita — and receive gentle, practical,
+        scripture-rooted guidance.
+      </p>
+    </section>
+
+    <!-- Three core experiences -->
+    <section id="gita-ashram-features">
+      <h2>Three ways to walk with the Gita</h2>
+      <div class="feature-grid">
+        <article class="feature-card">
+          <h3>Gita Decision Compass</h3>
+          <p>
+            Describe a real-life dilemma and receive a Gita-based perspective,
+            supporting verses, and a simple 3-step action plan.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <h3>Shloka-to-Life Transformer</h3>
+          <p>
+            Pick any verse and see how it speaks to your work, relationships,
+            and inner emotional life — with micro-practices to try today.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <h3>Gita Mind Coach</h3>
+          <p>
+            Work with specific emotions like fear, anger, or confusion using
+            Gita-informed perspectives and short guided resets.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Simple Gita Q&A (dummy for now) -->
+    <section id="gita-qa">
+      <h2>Ask the Gita (Preview)</h2>
+      <p>
+        Type a question or situation below. For now, this preview will show a
+        sample response. Later, it will connect to the Gita-only AI API.
+      </p>
+
+      <form id="gita-qa-form">
+        <label for="gita-question">Your question or dilemma</label><br />
+        <textarea id="gita-question" name="gita-question" rows="4" style="width:100%;"></textarea>
+        <br /><br />
+        <button type="submit">Ask the Gita</button>
+      </form>
+
+      <div id="gita-qa-response" style="margin-top:1rem;">
+        <!-- We’ll fill this with JS later -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>
+      Gita Ashram is a part of Atma Samvad inside the Atma Vani ecosystem.
+    </p>
+  </footer>
+
+  <!-- We will add app.js later, just before </body> -->
+  <link rel="stylesheet" href="styles.css">
+            <!-- FOOTER -->
+      <footer class="av-footer">
+        <div class="av-footer-main">
+          <p>
+            Atma Samvad — Gita Ashram is a part of the Atma Vani spiritual ecosystem.
+            This experience offers gentle, scripture-rooted reflections and is not a
+            substitute for professional medical, legal, or financial advice.
+          </p>
+        </div>
+        <div class="av-footer-links">
+          <a href="https://atmavani.life/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>
+          <span>•</span>
+          <a href="https://atmavani.life/terms-and-conditions" target="_blank" rel="noopener">Terms &amp; Conditions</a>
+          <span>•</span>
+          <a href="https://atmavani.life/refund-policy" target="_blank" rel="noopener">Refund Policy</a>
+        </div>
+      </footer>
+
+    </div> <!-- .av-main -->
+  </div> <!-- .av-page -->
+
+<script src="app.js"></script>
       <!-- ↑↑↑ PASTE IT IN PLACE OF THIS LINE ↑↑↑ -->
     </div>
   </div>
