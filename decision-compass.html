@@ -928,19 +928,25 @@
           </div>
         </header>
 
-        <!-- Trial banner (visual only for now) -->
-        <div class="trial-banner">
+               <!-- Trial banner (visual, will be wired to Atma Samvad logic later) -->
+        <div id="trialBanner" class="trial-banner">
           <div class="trial-inner">
             <div class="trial-label">
-              <span
-                >Full access trial — <strong>0 days left</strong></span
-              >
+              <span id="trialText">
+                Full access trial — <strong>0 days left</strong>
+              </span>
             </div>
-            <button class="trial-upgrade-btn" type="button">
+            <button
+              class="trial-upgrade-btn"
+              type="button"
+              id="trialUpgrade"
+              onclick="window.location.href='https://www.atmavani.life/atma-samvad-pricing'"
+            >
               Upgrade
             </button>
           </div>
         </div>
+
 
         <!-- Main content -->
         <main class="av-main">
