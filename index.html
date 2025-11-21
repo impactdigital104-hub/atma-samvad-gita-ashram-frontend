@@ -225,24 +225,25 @@ padding-bottom: 180px !important;   /* ← reliable on Android */
     <button id="menuBtn" class="hamburger" aria-label="Open menu" aria-expanded="false">☰</button>
 
     <!-- SIDEBAR (copied from home.html, with small tweaks to links) -->
-    <nav class="sidebar" id="sidebar">
+        <nav class="sidebar" id="sidebar">
       <div class="brand">
         <img alt="Atma Vani logo" src="https://atmavani.life/wp-content/uploads/2025/07/atma-vani-logo.jpg" />
       </div>
 
       <div class="section">Quick actions</div>
       <div class="menu">
-        <a class="item" href="https://atmavani.life/#new-chat" target="_blank" rel="noopener">
+        <!-- EXACTLY as in home.html -->
+        <a class="item" href="#new-chat">
           <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
-          <span>New Chat (Main)</span>
+          <span>New Chat</span>
           <span class="info">i</span>
-          <span class="tip">Open a fresh chat on AtmaVani.life.</span>
+          <span class="tip">Start a fresh conversation.</span>
         </a>
-        <a class="item" href="https://atmavani.life/#search-chats" target="_blank" rel="noopener">
+        <a class="item" href="#search-chats">
           <svg viewBox="0 0 24 24"><circle cx="10" cy="10" r="4"/><path d="M15 15l4 4"/></svg>
-          <span>Search Chats (Main)</span>
+          <span>Search Chats</span>
           <span class="info">i</span>
-          <span class="tip">Search within your Atma Vani conversations.</span>
+          <span class="tip">Search within this session.</span>
         </a>
       </div>
 
@@ -250,102 +251,98 @@ padding-bottom: 180px !important;   /* ← reliable on Android */
 
       <div class="subhead">I. The Guru’s Role</div>
       <div class="subgroup">
-        <a class="item" href="https://atmavani.life/atma-marg" target="_blank" rel="noopener">
+        <a class="item" href="/atma-marg">
           <svg viewBox="0 0 24 24"><path d="M7.5 20.5c-1.3 0-2.1-1-1.9-2 .2-.9 1.2-1.6 2.3-1.4 1.1.2 1.8 1.3 1.6 2.2-.1.7-.9 1.2-2 1.2zM15.3 18c-1.4 0-2.3-1.1-2-2.3.2-.9 1.4-1.6 2.6-1.4s1.9 1.2 1.7 2.1c-.2.9-1 1.6-2.3 1.6zM4 8c3-3 8-3 12 2"/></svg>
           <span>Atma Marg</span>
           <span class="info">i</span>
           <span class="tip">Custom spiritual path and chosen deity guidance.</span>
         </a>
-        <a class="item" href="https://atmavani.life/atma-sadhana" target="_blank" rel="noopener">
+        <a class="item" href="/atma-sadhana">
           <svg viewBox="0 0 24 24"><path d="M12 5c1.6 1.6 2.2 3.2 2.2 4.4-1-1-2.2-1-2.2-1s-1.2 0-2.2 1C9.8 8.2 10.4 6.6 12 5z"/><path d="M12 20c5 0 8-3 8-3-3 0-5-2-5-4 0 0-1 2-3 2s-3-2-3-2c0 2-2 4-5 4 0 0 3 3 8 3z"/></svg>
           <span>Atma Sadhana</span>
           <span class="info">i</span>
-          <span class="tip">Personalized daily spiritual practice.</span>
+          <span class="tip">Personalized daily spiritual practice and discipline.</span>
         </a>
-        <a class="item" href="https://samvad.atmavani.life/#hub" target="_blank" rel="noopener">
+        <a class="item" href="https://samvad.atmavani.life/#hub">
           <svg viewBox="0 0 24 24"><path d="M3 6h11v7H8l-3 3z"/><path d="M10 9h11v7h-4l-3 3"/></svg>
           <span>Atma Samvad</span>
           <span class="info">i</span>
-          <span class="tip">One-on-one personal guidance.</span>
+          <span class="tip">One-on-one personal guidance and spiritual dialogue.</span>
         </a>
       </div>
 
-      <div class="subhead">Gita Ashram</div>
+      <div class="subhead">II. The Philosopher’s Role</div>
       <div class="subgroup">
-        <a class="item" href="/" style="background:#fffaf1;border:1px solid rgba(0,0,0,0.08);">
-          <svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="M4 10h16"/></svg>
-          <span>Ask the Gita</span>
+        <a class="item" href="#vyakhya-vani">
+          <svg viewBox="0 0 24 24"><path d="M6 5h10a2 2 0 0 1 2 2v11H8a2 2 0 0 1-2-2z"/><path d="M6 5a2 2 0 1 0 0 4h10"/></svg>
+          <span>Vyakhya Vani</span>
+          <span class="info">i</span>
+          <span class="tip">Real-time scriptural interpretation for life problems.</span>
         </a>
-        <a class="item" href="/gita/decision-compass.html">
-          <svg viewBox="0 0 24 24"><path d="M12 2l3.5 7.5L23 11l-5.5 4.5L19 22l-7-3.5L5 22l1.5-6.5L1 11l7.5-1.5z"/></svg>
-          <span>Gita Decision Compass</span>
+        <a class="item" href="#vani-adhyayan">
+          <svg viewBox="0 0 24 24"><path d="M3 7h8a4 4 0 0 1 4 4v7H7a4 4 0 0 0-4 4z" transform="translate(0,-4)"/><path d="M21 7h-8a4 4 0 0 0-4 4v7h8a4 4 0 0 1 4 4z" transform="translate(0,-4)"/></svg>
+          <span>Vani Adhyayan</span>
+          <span class="info">i</span>
+          <span class="tip">Structured courses for studying sacred Hindu texts.</span>
         </a>
       </div>
 
-      <div class="subhead">Account</div>
+      <div class="subhead">III. The Divine Schedule</div>
       <div class="subgroup">
-        <!-- We will wire these later in Phase 3B -->
-        <a class="item" href="https://atmavani.life/#signup" target="_blank" rel="noopener">
+        <a class="item" href="#panchang-vani">
+          <svg viewBox="0 0 24 24"><path d="M7 2v3M17 2v3M3 8h18M5 5h14a2 2 0 0 1 2 2v13H3V7a2 2 0 0 1 2-2z"/><circle cx="8.5" cy="13.5" r="1.2"/></svg>
+          <span>Panchang Vani</span>
+          <span class="info">i</span>
+          <span class="tip">Daily auspicious timings and cosmic schedule guidance.</span>
+        </a>
+        <a class="item" href="#astro-vani">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><path d="M12 5v14M5 12h14M7.5 7.5l9 9M16.5 7.5l-9 9"/></svg>
+          <span>Astro Vani</span>
+          <span class="info">i</span>
+          <span class="tip">Personalized astrological chart readings and insights.</span>
+        </a>
+      </div>
+
+      <div class="subhead">IV. The Devotional Experience</div>
+      <div class="subgroup">
+        <a class="item" href="#bhajan-vani">
+          <svg viewBox="0 0 24 24"><path d="M14 3v12a3 3 0 1 1-2-2.8V6l8-3v9"/></svg>
+          <span>Bhajan Vani</span>
+          <span class="info">i</span>
+          <span class="tip">On-demand AI-generated devotional music and hymns.</span>
+        </a>
+        <a class="item" href="#vani-satsang">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="2"/><path d="M4 20a8 8 0 0 1 16 0"/><path d="M12 14c2 0 4 1 5 3-1.5 1-3.2 1.5-5 1.5S8.5 18 7 17c1-2 3-3 5-3z"/></svg>
+          <span>Vani Satsang</span>
+          <span class="info">i</span>
+          <span class="tip">Live online spiritual gatherings and collective events.</span>
+        </a>
+      </div>
+
+      <div class="spacer"></div>
+
+      <div class="account">
+        <div class="subhead" style="margin-top:0">Account</div>
+
+        <!-- EXACT Account block from home.html -->
+        <a class="item" href="#signup" id="avSignInLink">
           <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>
           <span>Sign Up / Sign In</span>
+          <span id="quotaBadge" style="margin-left:auto;font-size:11px;font-weight:800;color:#6b2f00;background:#fff3d6;border:1px solid #ffb703;border-radius:999px;padding:2px 6px;display:inline-block">0/10</span>
         </a>
-        <a class="item" href="https://atmavani.life/atma-samvad-pricing" target="_blank" rel="noopener">
+
+        <a class="item" href="#account" id="avSignOutLink">
+          <svg viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="12" rx="1.5"/><path d="M8 6v12"/></svg>
+          <span>Sign Out</span>
+        </a>
+
+        <a class="item" href="#billing">
           <svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="10" rx="1.2"/><path d="M3 11h18M7 15h4"/></svg>
-          <span>Pricing</span>
+          <span>Billing</span>
         </a>
       </div>
     </nav>
 
-    <!-- MAIN AREA FOR GITA ASHRAM CONTENT -->
-    <div class="main">
-      <!-- ↓↓↓ PASTE YOUR ORIGINAL GITA CONTENT HERE ↓↓↓ -->
-    <div class="av-page">
-    <!-- LEFT SIDEBAR -->
-    <aside class="av-sidebar">
-      <div class="av-sidebar-inner">
-        <div class="av-sidebar-logo">
-          <div class="av-logo-mark">ॐ</div>
-          <div class="av-logo-text">
-            <div class="av-logo-title">Atma Vani</div>
-            <div class="av-logo-subtitle">Gita Ashram</div>
-          </div>
-        </div>
-
-        <nav class="av-nav">
-          <div class="av-nav-group">
-            <div class="av-nav-heading">Main</div>
-            <a href="https://atmavani.life" class="av-nav-link" target="_blank" rel="noopener">
-              ← Back to AtmaVani.life
-            </a>
-          </div>
-
-          <div class="av-nav-group">
-            <div class="av-nav-heading">Gita Ashram</div>
-            <a href="/" class="av-nav-link av-nav-link-active">
-              Ask the Gita
-            </a>
-            <a href="/gita/decision-compass.html" class="av-nav-link">
-              Gita Decision Compass
-            </a>
-            <!-- Future links:
-            <a href="#" class="av-nav-link">Shloka-to-Life</a>
-            <a href="#" class="av-nav-link">Gita Mind Coach</a>
-            -->
-          </div>
-
-          <div class="av-nav-group">
-            <div class="av-nav-heading">More from Atma Vani</div>
-            <a href="https://atmavani.life/atma-marg" class="av-nav-link" target="_blank" rel="noopener">
-              Atma Marg — Your Path
-            </a>
-            <a href="https://atmavani.life/atma-sadhana" class="av-nav-link" target="_blank" rel="noopener">
-              Atma Sadhana — Daily Practice
-            </a>
-            <a href="https://atmavani.life/atma-samvad-pricing" class="av-nav-link" target="_blank" rel="noopener">
-              Atma Samvad Pricing
-            </a>
-          </div>
-        </nav>
       </div>
     </aside>
 
