@@ -245,7 +245,51 @@ padding-bottom: 180px !important;   /* ← reliable on Android */
   font-size: 14px;
   color: var(--muted);
 }
+/* Full access trial banner (visual only for now) */
+.trial-banner {
+  background: #0f172a; /* deep navy/black */
+  color: #f9fafb;
+  border-bottom: 1px solid #020617;
+}
 
+.trial-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13px;
+}
+
+.trial-label span {
+  opacity: 0.9;
+}
+
+.trial-label strong {
+  font-weight: 800;
+}
+
+.trial-upgrade-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  background: #f9fafb;
+  color: #020617;
+  transition: transform 0.06s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.trial-upgrade-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.35);
+  background: #e5e7eb;
+}
+
+    
 /* Section headings */
 .av-main h2 {
   margin-top: 0;
@@ -289,6 +333,13 @@ padding-bottom: 180px !important;   /* ← reliable on Android */
   transform: translateY(-3px);
   box-shadow: 0 14px 32px rgba(0, 0, 0, 0.10);
   border-color: rgba(255, 122, 24, 0.5);
+}
+/* Make linked cards behave like normal cards */
+.feature-card-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .feature-card h3 {
@@ -555,6 +606,17 @@ padding-bottom: 180px !important;   /* ← reliable on Android */
           </div>
         </div>
       </header>
+      <!-- Trial banner (visual only for now) -->
+      <div class="trial-banner">
+        <div class="trial-inner">
+          <div class="trial-label">
+            <span>Full access trial — <strong>0 days left</strong></span>
+          </div>
+          <button class="trial-upgrade-btn" type="button">
+            Upgrade
+          </button>
+        </div>
+      </div>
 
       <!-- Main content -->
       <main class="av-main">
@@ -572,13 +634,13 @@ padding-bottom: 180px !important;   /* ← reliable on Android */
         <section id="gita-ashram-features" class="av-shell">
           <h2>Three ways to walk with the Gita</h2>
           <div class="feature-grid">
-            <article class="feature-card">
-              <h3>Gita Decision Compass</h3>
-              <p>
-                Describe a real-life dilemma and receive a Gita-based
-                perspective, supporting verses, and a simple 3-step action plan.
-              </p>
-            </article>
+               <article class="feature-card">
+      <h3>Gita Decision Compass</h3>
+      <p>
+        Describe a real-life dilemma and receive a Gita-based perspective,
+        supporting verses, and a simple 3-step action plan.
+      </p>
+    </article>
 
             <article class="feature-card">
               <h3>Shloka-to-Life Transformer</h3>
