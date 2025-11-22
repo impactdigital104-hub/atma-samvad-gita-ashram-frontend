@@ -816,6 +816,119 @@ padding-bottom: 180px !important;   /* ← reliable on Android */
       });
     })();
   </script>
+    <!-- Gita Ashram access gate + trial banner (reuses Atma Samvad Firebase project) -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    // Same Firebase project as Atma Samvad
+    const firebaseConfig = {
+      apiKey: "AIzaSyBG9gtjR53FzUIBG7nk1nZJdHHinDLX2VY",
+      authDomain: "atma-vani-prod.firebaseapp.com",
+      projectId: "atma-vani-prod",
+      appId: "1:1043273819491:web:48ac7fac567392bb2bdf56",
+      storageBucket: "atma-vani-prod.firebasestorage.app"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    // Same 3-day logic as Atma Samvad
+    function daysLeftUTC(startDate, durationDays = 3) {
+      const startUTC = new Date(Date.UTC(
+        startDate.getUTCFullYear(),
+        startDate.getUTCMonth(),
+        startDate.getUTCDate()
+      ));
+      const endUTC = new Date(startUTC.getTime() + durationDays * 86400000);
+      const now = new Date();
+      const diffDays = Math.ceil((endUTC - now) / 86400000);
+      return Math.max(0, diffDays);
+    }
+
+    async function getSamvadStatus(user) {
+      // Not signed in at all
+      if (!user) return { allowed: false, tier: "none" };
+
+      const ref = doc(db, "samvad_users", user.uid);
+      const snap = await getDoc(ref);
+
+      // User is signed in but has never started a trial via the hub
+      // → treat as not allowed here and push them back to hub
+      if (!snap.exists()) {
+        return { allowed: false, tier: "none" };
+      }
+
+      const data = snap.data() || {};
+      const tier = (data.tier === "free") ? "trial" : (data.tier || "trial");
+
+      // Premium = always allowed, no banner needed if you want it clean later
+      if (tier === "premium") {
+        return { allowed: true, tier: "premium" };
+      }
+
+      // Trial case
+      const started = data.trialStartedAt
+        ? (data.trialStartedAt.toDate ? data.trialStartedAt.toDate() : new Date(data.trialStartedAt.seconds * 1000))
+        : new Date();
+
+      const daysLeft = daysLeftUTC(started);
+
+      return {
+        allowed: daysLeft > 0,
+        tier: "trial",
+        daysLeft
+      };
+    }
+
+    function updateBanner(status) {
+      const bar = document.getElementById("trialBanner");
+      const txt = document.getElementById("trialText");
+      if (!bar || !txt) return;
+
+      // Premium: hide the bar completely
+      if (status.tier === "premium") {
+        bar.style.display = "none";
+        return;
+      }
+
+      // Active trial: show "Full access trial — X days left"
+      if (status.tier === "trial" && typeof status.daysLeft === "number") {
+        const d = status.daysLeft;
+        txt.textContent =
+          "Full access trial — " +
+          d +
+          " day" +
+          (d === 1 ? "" : "s") +
+          " left";
+        bar.style.display = "block";
+      }
+    }
+
+    onAuthStateChanged(auth, async (user) => {
+      try {
+        const status = await getSamvadStatus(user);
+
+        // If not allowed for any reason → bounce to hub
+        if (!status.allowed) {
+          window.location.href = "https://samvad.atmavani.life/#hub";
+          return;
+        }
+
+        // Allowed: update the banner for trial / premium
+        updateBanner(status);
+      } catch (e) {
+        console.error("Gita Ashram gate error", e);
+        // Safety fallback: if something goes wrong, send them back to the hub
+        window.location.href = "https://samvad.atmavani.life/#hub";
+      }
+    });
+  </script>
+</body>
+</html>
+
 </body>
 
 
